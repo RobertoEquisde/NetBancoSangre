@@ -16,8 +16,36 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Rober\Desktop\programacion\c#\banco_sangre
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Anadir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQW5hZGlyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Donantes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRG9uYW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Almacenamiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQWxtYWNlbmFtaWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Anadir.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQW5hZGlyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Donacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRG9uYWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Donantes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRG9uYW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Editar.cshtml]

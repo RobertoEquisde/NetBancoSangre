@@ -4,9 +4,10 @@ using System.Data;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using  System.ComponentModel.DataAnnotations;
-
+using Microsoft.AspNetCore.Authorization;
 namespace banco_sangre.Controllers;
 
+//[Authorize]
 public class BancoController: Controller{
     private readonly IConfiguration _configuration;
     public BancoController(IConfiguration configuration)
@@ -15,39 +16,52 @@ public class BancoController: Controller{
     }
     public IActionResult Index()
     {
-        DataTable tbl = new DataTable();
+      return View();
+    }
+       public IActionResult Almacenamiento(){
+           DataTable tbl = new DataTable();
         using(MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection"))){
             conn.Open();
-            MySqlDataAdapter adaptador = new MySqlDataAdapter("SELECT * FROM donante",conn);
+            MySqlDataAdapter adaptador = new MySqlDataAdapter("SELECT * FROM Almacenamiento",conn);
             adaptador.Fill(tbl);
         }
         return View(tbl);
     }
-    public IActionResult Anadir()
+     public IActionResult Donacion(){
+           DataTable tbl = new DataTable();
+        using(MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection"))){
+            conn.Open();
+            MySqlDataAdapter adaptador = new MySqlDataAdapter("SELECT * FROM donacion",conn);
+            adaptador.Fill(tbl);
+        }
+        return View(tbl);
+    }
+    public IActionResult AnadirDonacion()
     {
         return View();
     }
 
     [HttpPost]
-    public IActionResult Anadir(DonanteViewModel model)
+    public IActionResult AnadirDonacion(DonacionViewModel model)
     {
         if (ModelState.IsValid)
         {
-            using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
             {
-                cnx.Open();
-                string query = "INSERT INTO donante(nombre,  edad, genero, tipo_sangre,  telefono,direccion)" +
-                            "VALUES (@nombre, @apellido, @edad, @genero, @tipoSangre, @direccion, @telefono , @correoElectronico, @ultimaDonacion, @restricciones)";
-                MySqlCommand cmd = new MySqlCommand(query, cnx);
-                cmd.Parameters.AddWithValue("@nombre", model.nombre);
-            
-                cmd.Parameters.AddWithValue("@edad", model.edad);
-                cmd.Parameters.AddWithValue("@genero", model.genero);
+                conn.Open();
+                string query = "INSERT INTO donacion(tipo_sangre,fecha, hora,cantidad,ubicacion)" +
+                            "VALUES (@tipo_sangre, @fecha, @hora, @cantidad,@ubicacion )";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@tipo_sangre", model.tipo_sangre);
-                cmd.Parameters.AddWithValue("@direccion", model.direccion);
-                cmd.Parameters.AddWithValue("@numero_contacto", model.numero_contacto);
+            
+                cmd.Parameters.AddWithValue("@fecha", model.fecha);
+                cmd.Parameters.AddWithValue("@hora", model.hora);
+                cmd.Parameters.AddWithValue("@cantidad", model.cantidad);
+                 cmd.Parameters.AddWithValue("@ubicacion", model.ubicacion);
+
+               
                 cmd.ExecuteNonQuery();
-                cnx.Close();
+                conn.Close();
             }
 
             return RedirectToAction("Index");
@@ -55,7 +69,120 @@ public class BancoController: Controller{
 
         return View(model);
     }
-    public IActionResult Editar(int id)
+    public IActionResult EditarDonancion(int id)
+    {
+        using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+        {
+            conn.Open();
+            string query = "SELECT * FROM donacion WHERE donacion_id = @id";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@ID", id);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    DonacionViewModel model = new DonacionViewModel
+                    {
+                        donante_id = Convert.ToInt32(reader["donacion_id"]),
+                        tipo_sangre = Convert.ToString(reader["tipo_sangre"]),
+                        fecha = Convert.ToString(reader["fecha"]),
+                        hora = Convert.ToString(reader["hora"]),
+                        cantidad = Convert.ToInt32(reader["cantidad"]),
+                        ubicacion = Convert.ToString(reader["ubicacion"]),
+                    };
+
+                    return View(model);
+                }
+            }
+        }
+        return RedirectToAction("Index");
+    }
+     [HttpPost]
+    public IActionResult EditarDonacion(DonacionViewModel model)  
+    {
+        
+        if(ModelState.IsValid)
+        {
+            using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                    cnx.Open();
+                    string query = "UPDATE donacion SET tipo_sangre = @Tipo_sangre ,  fecha = @Fecha , hora = @Hora ,cantidad = @Cantidad , ubicacion = @Ubicacion ,  WHERE donacion_id = @Donacion_id";
+                    MySqlCommand cmd = new MySqlCommand(query, cnx);
+
+                        cmd.Parameters.AddWithValue("@Tipo_Sangre", model.tipo_sangre);
+                        cmd.Parameters.AddWithValue("@Fecha", model.fecha);
+                        cmd.Parameters.AddWithValue("@Hora", model.hora);
+                        cmd.Parameters.AddWithValue("@Cantidad", model.tipo_sangre);
+                        cmd.Parameters.AddWithValue("@Ubicacion", model.ubicacion);
+                        cmd.Parameters.AddWithValue("@Donacion_id", model.donacion_id);
+                        cmd.ExecuteNonQuery();
+                    
+            }
+                      
+            return RedirectToAction("Index");
+          
+        }
+        
+         return View(model);
+    }
+    public IActionResult EliminarDonacion(int id)
+    {
+        using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+        {
+            cnx.Open();
+            string query = "DELETE FROM donacion WHERE donacion_id = @donacion_id";
+            MySqlCommand cmd = new MySqlCommand(query, cnx);
+            cmd.Parameters.AddWithValue("@donacion_id", id);
+            cmd.ExecuteNonQuery();
+            cnx.Close();
+        }
+
+        return RedirectToAction("Index");
+    }
+    public IActionResult Donantes(){
+           DataTable tbl = new DataTable();
+        using(MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection"))){
+            conn.Open();
+            MySqlDataAdapter adaptador = new MySqlDataAdapter("SELECT * FROM donante",conn);
+            adaptador.Fill(tbl);
+        }
+        return View(tbl);
+    }
+    public IActionResult AnadirDonantes()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AnadirDonantes(DonanteViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                conn.Open();
+                string query = "INSERT INTO donante(nombre,edad, genero,tipo_sangre,numero_contacto,direccion)" +
+                            "VALUES (@Nombre, @Edad, @Genero, @Tipo_sangre,@Numero_contacto , @Direccion )";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Nombre", model.nombre);
+            
+                cmd.Parameters.AddWithValue("@Edad", model.edad);
+                cmd.Parameters.AddWithValue("@Genero", model.genero);
+                cmd.Parameters.AddWithValue("@Tipo_sangre", model.tipo_sangre);
+                 cmd.Parameters.AddWithValue("@Numero_contacto", model.numero_contacto);
+                cmd.Parameters.AddWithValue("@Direccion", model.direccion);
+               
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        return View(model);
+    }
+    public IActionResult EditarDonantes(int id)
     {
         using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
         {
@@ -86,7 +213,7 @@ public class BancoController: Controller{
         return RedirectToAction("Index");
     }
      [HttpPost]
-    public IActionResult Editar(DonanteViewModel model)  
+    public IActionResult EditarDonantes(DonanteViewModel model)  
     {
         
         if(ModelState.IsValid)
@@ -114,7 +241,7 @@ public class BancoController: Controller{
         
          return View(model);
     }
-    public IActionResult Eliminar(int id)
+    public IActionResult EliminarDonantes(int id)
     {
         using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
         {

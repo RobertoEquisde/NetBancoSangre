@@ -52,3 +52,8 @@ C:\Users\Rober\Desktop\programacion\c#\banco_sangre\obj\Debug\net7.0\refint\banc
 C:\Users\Rober\Desktop\programacion\c#\banco_sangre\obj\Debug\net7.0\banco_sangre.pdb
 C:\Users\Rober\Desktop\programacion\c#\banco_sangre\obj\Debug\net7.0\banco_sangre.genruntimeconfig.cache
 C:\Users\Rober\Desktop\programacion\c#\banco_sangre\obj\Debug\net7.0\ref\banco_sangre.dll
+C:\Users\Rober\Desktop\programacion\c#\banco_sangre\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Rober\Desktop\programacion\c#\banco_sangre\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Rober\Desktop\programacion\c#\banco_sangre\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Rober\Desktop\programacion\c#\banco_sangre\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\Rober\Desktop\programacion\c#\banco_sangre\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
