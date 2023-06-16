@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-06-2023 a las 16:47:10
+-- Tiempo de generación: 16-06-2023 a las 21:52:20
 -- Versión del servidor: 5.6.13
 -- Versión de PHP: 5.4.17
 
@@ -25,105 +25,105 @@ USE `banco_sangre`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `almacenamiento`
+-- Estructura de tabla para la tabla `almacen`
 --
 
-CREATE TABLE IF NOT EXISTS `almacenamiento` (
-  `almacenamiento_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_sangre` varchar(10) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `almacen` (
+  `id_almacen` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_sangre` tinytext NOT NULL,
   `fecha_expiracion` date NOT NULL,
-  PRIMARY KEY (`almacenamiento_id`),
-  KEY `tipo_sangre` (`tipo_sangre`),
-  KEY `tipo_sangre_2` (`tipo_sangre`),
-  KEY `tipo_sangre_3` (`tipo_sangre`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=106 ;
+  `cantidad` int(11) NOT NULL,
+  `id_donante` int(11) NOT NULL,
+  PRIMARY KEY (`id_almacen`,`id_donante`),
+  KEY `fk_almacen_donante1_idx` (`id_donante`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Volcado de datos para la tabla `almacenamiento`
+-- Volcado de datos para la tabla `almacen`
 --
 
-INSERT INTO `almacenamiento` (`almacenamiento_id`, `tipo_sangre`, `cantidad`, `fecha_expiracion`) VALUES
-(26, 'A+', 80, '2023-12-31'),
-(27, 'B-', 40, '2023-11-30'),
-(28, 'O+', 65, '2023-10-31'),
-(29, 'AB+', 20, '2024-01-31'),
-(30, 'A-', 50, '2023-09-30'),
-(31, 'O-', 30, '2023-08-31'),
-(32, 'B+', 60, '2023-07-31'),
-(33, 'AB-', 15, '2023-12-31'),
-(34, 'A+', 70, '2023-11-30'),
-(35, 'O-', 25, '2023-10-31'),
-(36, 'B+', 55, '2024-01-31'),
-(37, 'AB-', 10, '2023-09-30'),
-(38, 'O+', 45, '2023-08-31'),
-(39, 'B-', 35, '2023-07-31'),
-(40, 'A-', 60, '2023-12-31'),
-(41, 'AB+', 18, '2023-11-30'),
-(42, 'O-', 28, '2023-10-31'),
-(43, 'A+', 75, '2024-01-31'),
-(44, 'B-', 30, '2023-09-30'),
-(45, 'O+', 50, '2023-08-31'),
-(46, 'A+', 80, '2023-12-31'),
-(47, 'B-', 40, '2023-11-30'),
-(48, 'O+', 65, '2023-10-31'),
-(49, 'AB+', 20, '2024-01-31'),
-(50, 'A-', 50, '2023-09-30'),
-(51, 'O-', 30, '2023-08-31'),
-(52, 'B+', 60, '2023-07-31'),
-(53, 'AB-', 15, '2023-12-31'),
-(54, 'A+', 70, '2023-11-30'),
-(55, 'O-', 25, '2023-10-31'),
-(56, 'B+', 55, '2024-01-31'),
-(57, 'AB-', 10, '2023-09-30'),
-(58, 'O+', 45, '2023-08-31'),
-(59, 'B-', 35, '2023-07-31'),
-(60, 'A-', 60, '2023-12-31'),
-(61, 'AB+', 18, '2023-11-30'),
-(62, 'O-', 28, '2023-10-31'),
-(63, 'A+', 75, '2024-01-31'),
-(64, 'B-', 30, '2023-09-30'),
-(65, 'O+', 50, '2023-08-31'),
-(66, 'A+', 80, '2023-12-31'),
-(67, 'B-', 40, '2023-11-30'),
-(68, 'O+', 65, '2023-10-31'),
-(69, 'AB+', 20, '2024-01-31'),
-(70, 'A-', 50, '2023-09-30'),
-(71, 'O-', 30, '2023-08-31'),
-(72, 'B+', 60, '2023-07-31'),
-(73, 'AB-', 15, '2023-12-31'),
-(74, 'A+', 70, '2023-11-30'),
-(75, 'O-', 25, '2023-10-31'),
-(76, 'B+', 55, '2024-01-31'),
-(77, 'AB-', 10, '2023-09-30'),
-(78, 'O+', 45, '2023-08-31'),
-(79, 'B-', 35, '2023-07-31'),
-(80, 'A-', 60, '2023-12-31'),
-(81, 'AB+', 18, '2023-11-30'),
-(82, 'O-', 28, '2023-10-31'),
-(83, 'A+', 75, '2024-01-31'),
-(84, 'B-', 30, '2023-09-30'),
-(85, 'O+', 50, '2023-08-31'),
-(86, 'A+', 80, '2023-12-31'),
-(87, 'B-', 40, '2023-11-30'),
-(88, 'O+', 65, '2023-10-31'),
-(89, 'AB+', 20, '2024-01-31'),
-(90, 'A-', 50, '2023-09-30'),
-(91, 'O-', 30, '2023-08-31'),
-(92, 'B+', 60, '2023-07-31'),
-(93, 'AB-', 15, '2023-12-31'),
-(94, 'A+', 70, '2023-11-30'),
-(95, 'O-', 25, '2023-10-31'),
-(96, 'B+', 55, '2024-01-31'),
-(97, 'AB-', 10, '2023-09-30'),
-(98, 'O+', 45, '2023-08-31'),
-(99, 'B-', 35, '2023-07-31'),
-(100, 'A-', 60, '2023-12-31'),
-(101, 'AB+', 18, '2023-11-30'),
-(102, 'O-', 28, '2023-10-31'),
-(103, 'A+', 75, '2024-01-31'),
-(104, 'B-', 30, '2023-09-30'),
-(105, 'O+', 50, '2023-08-31');
+INSERT INTO `almacen` (`id_almacen`, `tipo_sangre`, `fecha_expiracion`, `cantidad`, `id_donante`) VALUES
+(1, 'O+', '2023-06-30', 100, 1),
+(2, 'A+', '2023-06-30', 50, 2),
+(3, 'B-', '2023-06-30', 75, 3),
+(4, 'AB+', '2023-06-30', 60, 4),
+(5, 'O-', '2023-06-30', 80, 5),
+(6, 'A-', '2023-06-30', 40, 6),
+(7, 'B+', '2023-06-30', 70, 7),
+(8, 'AB-', '2023-06-30', 55, 8),
+(9, 'O+', '2023-06-30', 90, 9),
+(10, 'A+', '2023-06-30', 65, 10),
+(11, 'A+', '2023-07-15', 250, 11),
+(12, 'B+', '2023-06-30', 300, 12),
+(13, 'O+', '2023-08-10', 350, 13),
+(14, 'AB+', '2023-07-22', 400, 14),
+(15, 'A-', '2023-07-31', 200, 15),
+(16, 'B-', '2023-08-05', 250, 16),
+(17, 'O-', '2023-08-20', 300, 17),
+(18, 'AB-', '2023-07-29', 350, 18),
+(19, 'A+', '2023-08-08', 200, 19),
+(20, 'O+', '2023-08-17', 250, 20),
+(21, 'A+', '2023-07-15', 300, 21),
+(22, 'B+', '2023-06-30', 350, 22),
+(23, 'O+', '2023-08-10', 200, 23),
+(24, 'AB+', '2023-07-22', 250, 24),
+(25, 'A-', '2023-07-31', 300, 25),
+(26, 'B-', '2023-08-05', 350, 26),
+(27, 'O-', '2023-08-20', 200, 27),
+(28, 'AB-', '2023-07-29', 250, 28),
+(29, 'A+', '2023-08-08', 300, 29),
+(30, 'O+', '2023-08-17', 350, 30);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE IF NOT EXISTS `citas` (
+  `id_citas` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_cita` datetime NOT NULL,
+  `lugar_cita` tinytext NOT NULL,
+  `id_donante` int(11) NOT NULL,
+  PRIMARY KEY (`id_citas`,`id_donante`),
+  KEY `fk_citas_donante1_idx` (`id_donante`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id_citas`, `fecha_cita`, `lugar_cita`, `id_donante`) VALUES
+(1, '2023-06-17 10:00:00', 'Hospital General', 1),
+(2, '2023-06-18 11:30:00', 'Hospital Metropolitano', 2),
+(3, '2023-06-19 13:45:00', 'Hospital Universitario', 3),
+(4, '2023-06-20 09:15:00', 'Hospital San Lucas', 4),
+(5, '2023-06-21 16:30:00', 'Hospital Santa María', 5),
+(6, '2023-06-22 14:00:00', 'Hospital San José', 6),
+(7, '2023-06-23 10:30:00', 'Hospital Nacional', 7),
+(8, '2023-06-24 12:45:00', 'Hospital A', 8),
+(9, '2023-06-25 15:00:00', 'Hospital B', 9),
+(10, '2023-06-26 11:00:00', 'Hospital C', 10),
+(11, '2023-06-27 10:00:00', 'Hospital General de la Ciudad', 11),
+(12, '2023-06-28 11:30:00', 'Hospital Universitario', 12),
+(13, '2023-06-29 13:45:00', 'Hospital Regional', 13),
+(14, '2023-06-30 09:15:00', 'Clínica Santa María', 14),
+(15, '2023-07-01 14:30:00', 'Hospital San Juan de Dios', 15),
+(16, '2023-07-02 16:45:00', 'Clínica Internacional', 16),
+(17, '2023-07-03 12:00:00', 'Hospital Nacional', 17),
+(18, '2023-07-04 15:30:00', 'Hospital Metropolitano', 18),
+(19, '2023-07-05 08:45:00', 'Centro Médico ABC', 19),
+(20, '2023-07-06 11:15:00', 'Hospital Español', 20),
+(21, '2023-07-07 13:30:00', 'Hospital Central', 21),
+(22, '2023-07-08 10:45:00', 'Clínica del Carmen', 22),
+(23, '2023-07-09 16:00:00', 'Hospital San Lucas', 23),
+(24, '2023-07-10 14:15:00', 'Hospital Santa Rosa', 24),
+(25, '2023-07-11 09:30:00', 'Hospital San Francisco', 25),
+(26, '2023-07-12 12:45:00', 'Clínica San Rafael', 26),
+(27, '2023-07-13 15:00:00', 'Hospital del Valle', 27),
+(28, '2023-07-14 11:00:00', 'Hospital San José', 28),
+(29, '2023-07-15 13:15:00', 'Centro Médico Nacional', 29),
+(30, '2023-07-16 16:30:00', 'Clínica Ángeles', 30);
 
 -- --------------------------------------------------------
 
@@ -132,47 +132,34 @@ INSERT INTO `almacenamiento` (`almacenamiento_id`, `tipo_sangre`, `cantidad`, `f
 --
 
 CREATE TABLE IF NOT EXISTS `donacion` (
-  `donacion_id` int(11) NOT NULL AUTO_INCREMENT,
-  `donante_id` int(11) NOT NULL,
-  `tipo_sangre` varchar(10) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `ubicacion` varchar(255) NOT NULL,
-  PRIMARY KEY (`donacion_id`),
-  KEY `donante_id` (`donante_id`),
-  KEY `tipo_sangre` (`tipo_sangre`),
-  KEY `donante_id_2` (`donante_id`),
-  KEY `tipo_sangre_2` (`tipo_sangre`),
-  KEY `donante_id_3` (`donante_id`),
-  KEY `tipo_sangre_3` (`tipo_sangre`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=241 ;
+  `id_hospitales` int(11) NOT NULL,
+  `id_almacen` int(11) NOT NULL,
+  `id_donante` int(11) NOT NULL,
+  `fecha_envio` date NOT NULL,
+  PRIMARY KEY (`id_hospitales`,`id_almacen`,`id_donante`),
+  KEY `fk_hospitales_has_almacen_almacen1_idx` (`id_almacen`,`id_donante`),
+  KEY `fk_hospitales_has_almacen_hospitales1_idx` (`id_hospitales`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `donacion`
 --
 
-INSERT INTO `donacion` (`donacion_id`, `donante_id`, `tipo_sangre`, `fecha`, `hora`, `cantidad`, `ubicacion`) VALUES
-(221, 26, 'A+', '2023-06-06', '10:30:00', 1, 'Hospital ABC'),
-(222, 27, 'B-', '2023-06-07', '14:45:00', 2, 'Centro Médico XYZ'),
-(223, 28, 'O+', '2023-06-08', '09:00:00', 1, 'Hospital General'),
-(224, 29, 'AB+', '2023-06-09', '11:15:00', 2, 'Clínica Defensa'),
-(225, 30, 'A-', '2023-06-10', '16:30:00', 1, 'Hospital Central'),
-(226, 31, 'A+', '2023-06-11', '10:30:00', 1, 'Hospital ABC'),
-(227, 32, 'B-', '2023-06-12', '14:45:00', 2, 'Centro Médico XYZ'),
-(228, 33, 'O+', '2023-06-13', '09:00:00', 1, 'Hospital General'),
-(229, 34, 'AB+', '2023-06-14', '11:15:00', 2, 'Clínica Defensa'),
-(230, 35, 'A-', '2023-06-15', '16:30:00', 1, 'Hospital Central'),
-(231, 36, 'A+', '2023-06-16', '10:30:00', 1, 'Hospital ABC'),
-(232, 37, 'B-', '2023-06-17', '14:45:00', 2, 'Centro Médico XYZ'),
-(233, 38, 'O+', '2023-06-18', '09:00:00', 1, 'Hospital General'),
-(234, 39, 'AB+', '2023-06-19', '11:15:00', 2, 'Clínica Defensa'),
-(235, 40, 'A-', '2023-06-20', '16:30:00', 1, 'Hospital Central'),
-(236, 41, 'A+', '2023-06-21', '10:30:00', 1, 'Hospital ABC'),
-(237, 42, 'B-', '2023-06-22', '14:45:00', 2, 'Centro Médico XYZ'),
-(238, 43, 'O+', '2023-06-23', '09:00:00', 1, 'Hospital General'),
-(239, 44, 'AB+', '2023-06-24', '11:15:00', 2, 'Clínica Defensa'),
-(240, 45, 'A-', '2023-06-25', '16:30:00', 1, 'Hospital Central');
+INSERT INTO `donacion` (`id_hospitales`, `id_almacen`, `id_donante`, `fecha_envio`) VALUES
+(1, 1, 1, '2023-06-17'),
+(1, 11, 11, '2023-07-01'),
+(2, 12, 12, '2023-06-28'),
+(3, 3, 3, '2023-06-19'),
+(3, 13, 13, '2023-07-15'),
+(4, 14, 14, '2023-07-03'),
+(5, 15, 15, '2023-07-18'),
+(6, 6, 6, '2023-06-22'),
+(6, 16, 16, '2023-07-01'),
+(7, 17, 17, '2023-07-21'),
+(8, 18, 18, '2023-07-12'),
+(9, 9, 9, '2023-06-25'),
+(9, 19, 19, '2023-07-29'),
+(10, 20, 20, '2023-07-17');
 
 -- --------------------------------------------------------
 
@@ -181,98 +168,81 @@ INSERT INTO `donacion` (`donacion_id`, `donante_id`, `tipo_sangre`, `fecha`, `ho
 --
 
 CREATE TABLE IF NOT EXISTS `donante` (
-  `donante_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `edad` int(11) NOT NULL,
-  `genero` varchar(10) NOT NULL,
-  `tipo_sangre` varchar(10) NOT NULL,
-  `numero_contacto` varchar(10) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  PRIMARY KEY (`donante_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=106 ;
+  `id_donante` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_sangre` tinytext NOT NULL,
+  `nombre` tinytext NOT NULL,
+  `apellidos` tinytext NOT NULL,
+  `anio_nacimiento` date NOT NULL,
+  `donacion_realizada` tinyint(4) DEFAULT '0',
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id_donante`,`id_usuario`),
+  KEY `fk_donante_usuario_idx` (`id_usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Volcado de datos para la tabla `donante`
 --
 
-INSERT INTO `donante` (`donante_id`, `nombre`, `edad`, `genero`, `tipo_sangre`, `numero_contacto`, `direccion`) VALUES
-(26, 'Patricia Sánchez', 42, 'Femenino', 'O-', '1234567891', 'Calle Principal 456'),
-(27, 'Ricardo Martínez', 33, 'Masculino', 'B+', '9876543211', 'Avenida Central 789'),
-(28, 'Carolina García', 29, 'Femenino', 'A-', '5678901235', 'Carrera 7 891'),
-(29, 'Jorge Torres', 36, 'Masculino', 'AB-', '4321098766', 'Calle Secundaria 322'),
-(30, 'Carmen Ramírez', 41, 'Femenino', 'A+', '8765432108', 'Avenida Norte 790'),
-(31, 'Fernando Gómez', 28, 'Masculino', 'O+', '1234567892', 'Calle Principal 457'),
-(32, 'Ana Torres', 30, 'Femenino', 'AB+', '9876543212', 'Avenida Central 790'),
-(33, 'Roberto García', 45, 'Masculino', 'B-', '5678901236', 'Carrera 7 892'),
-(34, 'Laura Sánchez', 39, 'Femenino', 'O+', '4321098767', 'Calle Secundaria 323'),
-(35, 'Andrés Martínez', 27, 'Masculino', 'A-', '8765432107', 'Avenida Norte 791'),
-(36, 'Valentina García', 31, 'Femenino', 'B+', '1234567893', 'Calle Principal 458'),
-(37, 'Carlos Ramírez', 38, 'Masculino', 'O-', '9876543213', 'Avenida Central 791'),
-(38, 'María Gómez', 34, 'Femenino', 'AB-', '5678901237', 'Carrera 7 893'),
-(39, 'Juan Torres', 40, 'Masculino', 'A+', '4321098768', 'Calle Secundaria 324'),
-(40, 'Sofía Sánchez', 32, 'Femenino', 'B-', '8765432106', 'Avenida Norte 792'),
-(41, 'Pedro Martínez', 37, 'Masculino', 'O+', '1234567894', 'Calle Principal 459'),
-(42, 'Luisa García', 43, 'Femenino', 'AB+', '9876543214', 'Avenida Central 792'),
-(43, 'Mario Ramírez', 26, 'Masculino', 'A-', '5678901238', 'Carrera 7 894'),
-(44, 'Carolina Gómez', 35, 'Femenino', 'B+', '4321098769', 'Calle Secundaria 325'),
-(45, 'Roberto Torres', 44, 'Masculino', 'O-', '8765432105', 'Avenida Norte 793'),
-(46, 'Patricia Sánchez', 42, 'Femenino', 'O-', '1234567891', 'Calle Principal 456'),
-(47, 'Ricardo Martínez', 33, 'Masculino', 'B+', '9876543211', 'Avenida Central 789'),
-(48, 'Carolina García', 29, 'Femenino', 'A-', '5678901235', 'Carrera 7 891'),
-(49, 'Jorge Torres', 36, 'Masculino', 'AB-', '4321098766', 'Calle Secundaria 322'),
-(50, 'Carmen Ramírez', 41, 'Femenino', 'A+', '8765432108', 'Avenida Norte 790'),
-(51, 'Fernando Gómez', 28, 'Masculino', 'O+', '1234567892', 'Calle Principal 457'),
-(53, 'Roberto García', 45, 'Masculino', 'B-', '5678901236', 'Carrera 7 892'),
-(54, 'Laura Sánchez', 39, 'Femenino', 'O+', '4321098767', 'Calle Secundaria 323'),
-(55, 'Andrés Martínez', 27, 'Masculino', 'A-', '8765432107', 'Avenida Norte 791'),
-(56, 'Valentina García', 31, 'Femenino', 'B+', '1234567893', 'Calle Principal 458'),
-(57, 'Carlos Ramírez', 38, 'Masculino', 'O-', '9876543213', 'Avenida Central 791'),
-(58, 'María Gómez', 34, 'Femenino', 'AB-', '5678901237', 'Carrera 7 893'),
-(59, 'Juan Torres', 40, 'Masculino', 'A+', '4321098768', 'Calle Secundaria 324'),
-(60, 'Sofía Sánchez', 32, 'Femenino', 'B-', '8765432106', 'Avenida Norte 792'),
-(61, 'Pedro Martínez', 37, 'Masculino', 'O+', '1234567894', 'Calle Principal 459'),
-(62, 'Luisa García', 43, 'Femenino', 'AB+', '9876543214', 'Avenida Central 792'),
-(63, 'Mario Ramírez', 26, 'Masculino', 'A-', '5678901238', 'Carrera 7 894'),
-(64, 'Carolina Gómez', 35, 'Femenino', 'B+', '4321098769', 'Calle Secundaria 325'),
-(65, 'Roberto Torres', 44, 'Masculino', 'O-', '8765432105', 'Avenida Norte 793'),
-(66, 'Patricia Sánchez', 42, 'Femenino', 'O-', '1234567891', 'Calle Principal 456'),
-(67, 'Ricardo Martínez', 33, 'Masculino', 'B+', '9876543211', 'Avenida Central 789'),
-(68, 'Carolina García', 29, 'Femenino', 'A-', '5678901235', 'Carrera 7 891'),
-(69, 'Jorge Torres', 36, 'Masculino', 'AB-', '4321098766', 'Calle Secundaria 322'),
-(70, 'Carmen Ramírez', 41, 'Femenino', 'A+', '8765432108', 'Avenida Norte 790'),
-(71, 'Fernando Gómez', 28, 'Masculino', 'O+', '1234567892', 'Calle Principal 457'),
-(73, 'Roberto García', 45, 'Masculino', 'B-', '5678901236', 'Carrera 7 892'),
-(74, 'Laura Sánchez', 39, 'Femenino', 'O+', '4321098767', 'Calle Secundaria 323'),
-(75, 'Andrés Martínez', 27, 'Masculino', 'A-', '8765432107', 'Avenida Norte 791'),
-(76, 'Valentina García', 31, 'Femenino', 'B+', '1234567893', 'Calle Principal 458'),
-(77, 'Carlos Ramírez', 38, 'Masculino', 'O-', '9876543213', 'Avenida Central 791'),
-(78, 'María Gómez', 34, 'Femenino', 'AB-', '5678901237', 'Carrera 7 893'),
-(79, 'Juan Torres', 40, 'Masculino', 'A+', '4321098768', 'Calle Secundaria 324'),
-(80, 'Sofía Sánchez', 32, 'Femenino', 'B-', '8765432106', 'Avenida Norte 792'),
-(81, 'Pedro Martínez', 37, 'Masculino', 'O+', '1234567894', 'Calle Principal 459'),
-(82, 'Luisa García', 43, 'Femenino', 'AB+', '9876543214', 'Avenida Central 792'),
-(83, 'Mario Ramírez', 26, 'Masculino', 'A-', '5678901238', 'Carrera 7 894'),
-(84, 'Carolina Gómez', 35, 'Femenino', 'B+', '4321098769', 'Calle Secundaria 325'),
-(85, 'Roberto Torres', 44, 'Masculino', 'O-', '8765432105', 'Avenida Norte 793'),
-(86, 'Patricia Sánchez', 42, 'Femenino', 'O-', '1234567891', 'Calle Principal 456'),
-(87, 'Ricardo Martínez', 33, 'Masculino', 'B+', '9876543211', 'Avenida Central 789'),
-(88, 'Carolina García', 29, 'Femenino', 'A-', '5678901235', 'Carrera 7 891'),
-(89, 'Jorge Torres', 36, 'Masculino', 'AB-', '4321098766', 'Calle Secundaria 322'),
-(90, 'Carmen Ramírez', 41, 'Femenino', 'A+', '8765432108', 'Avenida Norte 790'),
-(91, 'Fernando Gómez', 28, 'Masculino', 'O+', '1234567892', 'Calle Principal 457'),
-(93, 'Roberto García', 45, 'Masculino', 'B-', '5678901236', 'Carrera 7 892'),
-(94, 'Laura Sánchez', 39, 'Femenino', 'O+', '4321098767', 'Calle Secundaria 323'),
-(95, 'Andrés Martínez', 27, 'Masculino', 'A-', '8765432107', 'Avenida Norte 791'),
-(96, 'Valentina García', 31, 'Femenino', 'B+', '1234567893', 'Calle Principal 458'),
-(97, 'Carlos Ramírez', 38, 'Masculino', 'O-', '9876543213', 'Avenida Central 791'),
-(98, 'María Gómez', 34, 'Femenino', 'AB-', '5678901237', 'Carrera 7 893'),
-(99, 'Juan Torres', 40, 'Masculino', 'A+', '4321098768', 'Calle Secundaria 324'),
-(100, 'Sofía Sánchez', 32, 'Femenino', 'B-', '8765432106', 'Avenida Norte 792'),
-(101, 'Pedro Martínez', 37, 'Masculino', 'O+', '1234567894', 'Calle Principal 459'),
-(102, 'Luisa García', 43, 'Femenino', 'AB+', '9876543214', 'Avenida Central 792'),
-(103, 'Mario Ramírez', 26, 'Masculino', 'A-', '5678901238', 'Carrera 7 894'),
-(104, 'Carolina Gómez', 35, 'Femenino', 'B+', '4321098769', 'Calle Secundaria 325'),
-(105, 'Roberto Torres', 44, 'Masculino', 'O-', '8765432105', 'Avenida Norte 793');
+INSERT INTO `donante` (`id_donante`, `tipo_sangre`, `nombre`, `apellidos`, `anio_nacimiento`, `donacion_realizada`, `id_usuario`) VALUES
+(1, 'O+', 'Donante 1', 'Apellido 1', '1980-01-10', 1, 1),
+(2, 'A+', 'Donante 2', 'Apellido 2', '1975-03-15', 0, 2),
+(3, 'B-', 'Donante 3', 'Apellido 3', '1988-07-22', 1, 3),
+(4, 'AB+', 'Donante 4', 'Apellido 4', '1992-05-05', 0, 4),
+(5, 'O-', 'Donante 5', 'Apellido 5', '1985-11-18', 0, 5),
+(6, 'A-', 'Donante 6', 'Apellido 6', '1998-02-28', 1, 6),
+(7, 'B+', 'Donante 7', 'Apellido 7', '1992-09-03', 0, 7),
+(8, 'AB-', 'Donante 8', 'Apellido 8', '1993-06-23', 0, 8),
+(9, 'O+', 'Donante 9', 'Apellido 9', '1990-04-05', 0, 9),
+(10, 'A+', 'Donante 10', 'Apellido 10', '1987-08-12', 0, 10),
+(11, 'A+', 'Juan', 'García López', '1990-05-12', 1, 11),
+(12, 'B+', 'María', 'Hernández Rodríguez', '1985-09-28', 1, 12),
+(13, 'O+', 'Carlos', 'Martínez Pérez', '1992-02-15', 1, 13),
+(14, 'AB+', 'Laura', 'González Gómez', '1998-11-03', 1, 14),
+(15, 'A-', 'Luis', 'Rodríguez García', '1995-07-19', 1, 15),
+(16, 'B-', 'Ana', 'López Martínez', '1993-03-25', 1, 16),
+(17, 'O-', 'Pedro', 'Sánchez González', '1988-08-09', 1, 17),
+(18, 'AB-', 'Sofía', 'Pérez Hernández', '1991-06-06', 1, 18),
+(19, 'A+', 'Diego', 'Gómez Rodríguez', '1997-04-17', 1, 19),
+(20, 'O+', 'Lucía', 'García Pérez', '1994-12-30', 1, 20),
+(21, 'A-', 'Alejandro', 'Hernández López', '1989-10-22', 0, 21),
+(22, 'O-', 'Valentina', 'Martínez García', '1996-01-07', 0, 22),
+(23, 'B+', 'Javier', 'González Sánchez', '1999-09-14', 0, 23),
+(24, 'AB+', 'Mariana', 'Rodríguez Pérez', '1992-07-31', 0, 24),
+(25, 'B-', 'Fernando', 'López Gómez', '1987-03-18', 0, 25),
+(26, 'AB-', 'Camila', 'Martínez Rodríguez', '1993-06-02', 0, 26),
+(27, 'A+', 'Emilio', 'García Martínez', '1998-04-24', 0, 27),
+(28, 'O+', 'Isabella', 'Hernández González', '1991-12-11', 0, 28),
+(29, 'A-', 'Andrés', 'Pérez López', '1986-08-27', 0, 29),
+(30, 'O-', 'Natalia', 'Gómez Martínez', '1994-02-02', 0, 30);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hospitales`
+--
+
+CREATE TABLE IF NOT EXISTS `hospitales` (
+  `id_hospitales` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_hospital` tinytext NOT NULL,
+  `direccion_hospital` tinytext NOT NULL,
+  PRIMARY KEY (`id_hospitales`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `hospitales`
+--
+
+INSERT INTO `hospitales` (`id_hospitales`, `nombre_hospital`, `direccion_hospital`) VALUES
+(1, 'Hospital General', 'Calle Principal 123, Ciudad'),
+(2, 'Hospital Metropolitano', 'Avenida Central 456, Ciudad'),
+(3, 'Hospital Universitario', 'Avenida Principal 789, Ciudad'),
+(4, 'Hospital San Lucas', 'Calle Secundaria 321, Ciudad'),
+(5, 'Hospital Santa María', 'Avenida Secundaria 654, Ciudad'),
+(6, 'Hospital San José', 'Calle Principal 987, Ciudad'),
+(7, 'Hospital Nacional', 'Avenida Central 654, Ciudad'),
+(8, 'Hospital A', 'Dirección A'),
+(9, 'Hospital B', 'Dirección B'),
+(10, 'Hospital C', 'Dirección C');
 
 -- --------------------------------------------------------
 
@@ -281,111 +251,77 @@ INSERT INTO `donante` (`donante_id`, `nombre`, `edad`, `genero`, `tipo_sangre`, 
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `correo_electronico` varchar(255) NOT NULL,
-  `contrasena` varchar(255) NOT NULL,
-  `rol` enum('admin','usuario') NOT NULL,
-  PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `curp` varchar(18) NOT NULL,
+  `contrasena` tinytext NOT NULL,
+  `rol` tinytext NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`usuario_id`, `nombre`, `correo_electronico`, `contrasena`, `rol`) VALUES
-(1, 'Luisa López', 'luisa@example.com', 'qwerty123', 'usuario'),
-(2, 'Mario González', 'mario@example.com', 'password123', 'admin'),
-(3, 'Carolina Ramírez', 'carolina@example.com', 'abc123', 'usuario'),
-(4, 'Juan Carlos Rodríguez', 'juancarlos@example.com', 'pass1234', 'usuario'),
-(5, 'Ana María Pérez', 'anamaria@example.com', 'test123', 'usuario'),
-(6, 'Carlos Sánchez', 'carlos@example.com', 'password', 'usuario'),
-(7, 'Laura Martínez', 'laura@example.com', 'abc12345', 'usuario'),
-(8, 'Roberto Gómez', 'roberto@example.com', 'password12345', 'admin'),
-(9, 'María Torres', 'maria@example.com', 'test1234', 'usuario'),
-(10, 'Pedro Ramírez', 'pedro@example.com', 'abc123456', 'usuario'),
-(11, 'Sofía García', 'sofia@example.com', 'password123456', 'usuario'),
-(12, 'Fernando López', 'fernando@example.com', 'test12345', 'usuario'),
-(13, 'Marta González', 'marta@example.com', 'abc1234567', 'usuario'),
-(14, 'Javier Sánchez', 'javier@example.com', 'password1234567', 'admin'),
-(15, 'Camila Martínez', 'camila@example.com', 'test123456', 'usuario'),
-(16, 'David Gómez', 'david@example.com', 'abc12345678', 'usuario'),
-(17, 'Isabella Torres', 'isabella@example.com', 'password12345678', 'usuario'),
-(18, 'Manuel Ramírez', 'manuel@example.com', 'test1234567', 'usuario'),
-(19, 'Valentina García', 'valentina@example.com', 'abc123456789', 'usuario'),
-(20, 'Andrés López', 'andres@example.com', 'password123456789', 'admin'),
-(21, 'Luisa López', 'luisa@example.com', 'qwerty123', 'usuario'),
-(22, 'Mario González', 'mario@example.com', 'password123', 'admin'),
-(23, 'Carolina Ramírez', 'carolina@example.com', 'abc123', 'usuario'),
-(24, 'Juan Carlos Rodríguez', 'juancarlos@example.com', 'pass1234', 'usuario'),
-(25, 'Ana María Pérez', 'anamaria@example.com', 'test123', 'usuario'),
-(26, 'Carlos Sánchez', 'carlos@example.com', 'password', 'usuario'),
-(27, 'Laura Martínez', 'laura@example.com', 'abc12345', 'usuario'),
-(28, 'Roberto Gómez', 'roberto@example.com', 'password12345', 'admin'),
-(29, 'María Torres', 'maria@example.com', 'test1234', 'usuario'),
-(30, 'Pedro Ramírez', 'pedro@example.com', 'abc123456', 'usuario'),
-(31, 'Sofía García', 'sofia@example.com', 'password123456', 'usuario'),
-(32, 'Fernando López', 'fernando@example.com', 'test12345', 'usuario'),
-(33, 'Marta González', 'marta@example.com', 'abc1234567', 'usuario'),
-(34, 'Javier Sánchez', 'javier@example.com', 'password1234567', 'admin'),
-(35, 'Camila Martínez', 'camila@example.com', 'test123456', 'usuario'),
-(36, 'David Gómez', 'david@example.com', 'abc12345678', 'usuario'),
-(37, 'Isabella Torres', 'isabella@example.com', 'password12345678', 'usuario'),
-(38, 'Manuel Ramírez', 'manuel@example.com', 'test1234567', 'usuario'),
-(39, 'Valentina García', 'valentina@example.com', 'abc123456789', 'usuario'),
-(40, 'Andrés López', 'andres@example.com', 'password123456789', 'admin'),
-(41, 'Luisa López', 'luisa@example.com', 'qwerty123', 'usuario'),
-(42, 'Mario González', 'mario@example.com', 'password123', 'admin'),
-(43, 'Carolina Ramírez', 'carolina@example.com', 'abc123', 'usuario'),
-(44, 'Juan Carlos Rodríguez', 'juancarlos@example.com', 'pass1234', 'usuario'),
-(45, 'Ana María Pérez', 'anamaria@example.com', 'test123', 'usuario'),
-(46, 'Carlos Sánchez', 'carlos@example.com', 'password', 'usuario'),
-(47, 'Laura Martínez', 'laura@example.com', 'abc12345', 'usuario'),
-(48, 'Roberto Gómez', 'roberto@example.com', 'password12345', 'admin'),
-(49, 'María Torres', 'maria@example.com', 'test1234', 'usuario'),
-(50, 'Pedro Ramírez', 'pedro@example.com', 'abc123456', 'usuario'),
-(51, 'Sofía García', 'sofia@example.com', 'password123456', 'usuario'),
-(52, 'Fernando López', 'fernando@example.com', 'test12345', 'usuario'),
-(53, 'Marta González', 'marta@example.com', 'abc1234567', 'usuario'),
-(54, 'Javier Sánchez', 'javier@example.com', 'password1234567', 'admin'),
-(55, 'Camila Martínez', 'camila@example.com', 'test123456', 'usuario'),
-(56, 'David Gómez', 'david@example.com', 'abc12345678', 'usuario'),
-(57, 'Isabella Torres', 'isabella@example.com', 'password12345678', 'usuario'),
-(58, 'Manuel Ramírez', 'manuel@example.com', 'test1234567', 'usuario'),
-(59, 'Valentina García', 'valentina@example.com', 'abc123456789', 'usuario'),
-(60, 'Andrés López', 'andres@example.com', 'password123456789', 'admin'),
-(61, 'Luisa López', 'luisa@example.com', 'qwerty123', 'usuario'),
-(62, 'Mario González', 'mario@example.com', 'password123', 'admin'),
-(63, 'Carolina Ramírez', 'carolina@example.com', 'abc123', 'usuario'),
-(64, 'Juan Carlos Rodríguez', 'juancarlos@example.com', 'pass1234', 'usuario'),
-(65, 'Ana María Pérez', 'anamaria@example.com', 'test123', 'usuario'),
-(66, 'Carlos Sánchez', 'carlos@example.com', 'password', 'usuario'),
-(67, 'Laura Martínez', 'laura@example.com', 'abc12345', 'usuario'),
-(68, 'Roberto Gómez', 'roberto@example.com', 'password12345', 'admin'),
-(69, 'María Torres', 'maria@example.com', 'test1234', 'usuario'),
-(70, 'Pedro Ramírez', 'pedro@example.com', 'abc123456', 'usuario'),
-(71, 'Sofía García', 'sofia@example.com', 'password123456', 'usuario'),
-(72, 'Fernando López', 'fernando@example.com', 'test12345', 'usuario'),
-(73, 'Marta González', 'marta@example.com', 'abc1234567', 'usuario'),
-(74, 'Javier Sánchez', 'javier@example.com', 'password1234567', 'admin'),
-(75, 'Camila Martínez', 'camila@example.com', 'test123456', 'usuario'),
-(76, 'David Gómez', 'david@example.com', 'abc12345678', 'usuario'),
-(77, 'Isabella Torres', 'isabella@example.com', 'password12345678', 'usuario'),
-(78, 'Manuel Ramírez', 'manuel@example.com', 'test1234567', 'usuario'),
-(79, 'Valentina García', 'valentina@example.com', 'abc123456789', 'usuario'),
-(80, 'Andrés López', 'andres@example.com', 'password123456789', 'admin');
+INSERT INTO `usuario` (`id_usuario`, `curp`, `contrasena`, `rol`) VALUES
+(1, 'LOXJ900428HDFSMR05', 'pass10', 'admin'),
+(2, 'GARP960214HDFLNN07', 'pass9', 'usuario'),
+(3, 'MOLJ850812HDFNRN01', 'pass8', 'usuario'),
+(4, 'VOPA880518HDFBRN02', 'pass7', 'usuario'),
+(5, 'HERC890202HDFGRN09', 'pass6', 'usuario'),
+(6, 'ZAND800728HDFDRN08', 'pass5', 'usuario'),
+(7, 'DORL920305HDFSMN04', 'pass4', 'usuario'),
+(8, 'COSP930623HDFLSN03', 'pass3', 'usuario'),
+(9, 'JUAR940515HDFDRN06', 'pass2', 'admin'),
+(10, 'ALVM950303HDFNRN10', 'pass1', 'admin'),
+(11, 'GAJL900512HMCRRS00', 'contraseña11', 'usuario'),
+(12, 'HERM850928MMCRDR03', 'contraseña12', 'usuario'),
+(13, 'MARP920215HMCRZQ07', 'contraseña13', 'usuario'),
+(14, 'GOLJ981103HMCRZQ09', 'contraseña14', 'usuario'),
+(15, 'ROGL950719HMCRRC02', 'contraseña15', 'usuario'),
+(16, 'LOMA930325HMCRZQ06', 'contraseña16', 'usuario'),
+(17, 'SAGP880809HMCRDR04', 'contraseña17', 'usuario'),
+(18, 'PEHS910606HMCRSF02', 'contraseña18', 'usuario'),
+(19, 'GODD970417HMCRQS05', 'contraseña19', 'usuario'),
+(20, 'GARP941230HMCRZQ08', 'contraseña20', 'usuario'),
+(21, 'HELA891022HMCRRS08', 'contraseña21', 'usuario'),
+(22, 'MAGV960107HMCRRL01', 'contraseña22', 'usuario'),
+(23, 'GOSJ990914HMCRGZ05', 'contraseña23', 'usuario'),
+(24, 'ROPM920731HMCRCD07', 'contraseña24', 'usuario'),
+(25, 'LOFG870318HMCRZQ01', 'contraseña25', 'usuario'),
+(26, 'MARC930602HMCRZQ09', 'contraseña26', 'usuario'),
+(27, 'GAMA980424HMCRZQ04', 'contraseña27', 'usuario'),
+(28, 'HEGO911211HMCRGZ05', 'contraseña28', 'usuario'),
+(29, 'PEAL860827HMCRZQ02', 'contraseña29', 'usuario'),
+(30, 'GOMN940202HMCRRS08', 'contraseña30', 'usuario');
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `almacen`
+--
+ALTER TABLE `almacen`
+  ADD CONSTRAINT `fk_almacen_donante1` FOREIGN KEY (`id_donante`) REFERENCES `donante` (`id_donante`);
+
+--
+-- Filtros para la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD CONSTRAINT `fk_citas_donante1` FOREIGN KEY (`id_donante`) REFERENCES `donante` (`id_donante`);
+
+--
 -- Filtros para la tabla `donacion`
 --
 ALTER TABLE `donacion`
-  ADD CONSTRAINT `donacion_ibfk_1` FOREIGN KEY (`donante_id`) REFERENCES `donante` (`donante_id`),
-  ADD CONSTRAINT `donacion_ibfk_2` FOREIGN KEY (`donante_id`) REFERENCES `donante` (`donante_id`),
-  ADD CONSTRAINT `donacion_ibfk_3` FOREIGN KEY (`tipo_sangre`) REFERENCES `almacenamiento` (`tipo_sangre`);
+  ADD CONSTRAINT `fk_hospitales_has_almacen_almacen1` FOREIGN KEY (`id_almacen`, `id_donante`) REFERENCES `almacen` (`id_almacen`, `id_donante`),
+  ADD CONSTRAINT `fk_hospitales_has_almacen_hospitales1` FOREIGN KEY (`id_hospitales`) REFERENCES `hospitales` (`id_hospitales`);
+
+--
+-- Filtros para la tabla `donante`
+--
+ALTER TABLE `donante`
+  ADD CONSTRAINT `fk_donante_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

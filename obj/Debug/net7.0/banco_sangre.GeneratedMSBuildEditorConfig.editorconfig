@@ -16,28 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Rober\Desktop\programacion\c#\banco_sangre
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Anadir.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQW5hZGlyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Donantes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRG9uYW50ZXMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdGFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Almacenamiento.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQWxtYWNlbmFtaWVudG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Anadir.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQW5hZGlyLmNzaHRtbA==
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/AnadirAlmacenamiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQW5hZGlyQWxtYWNlbmFtaWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/AnadirDonantes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQW5hZGlyRG9uYW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Donacion.cshtml]
@@ -48,8 +36,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRG9uYW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRWRpdGFyLmNzaHRtbA==
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/EditarAlmacenamiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRWRpdGFyQWxtYWNlbmFtaWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/EditarDonantes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRWRpdGFyRG9uYW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Banco/Index.cshtml]
@@ -70,6 +62,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xBZ3JlZ2FyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xpbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/_ViewImports.cshtml]

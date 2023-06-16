@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Añadir Datos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Añadir Datos</h1>
+        <form action="/Banco/anadirAlmacenamiento" method="POST">
+            <div class="form-group">
+                <label for="tipo_sangre">Tipo de Sangre:</label>
+                <input type="text" class="form-control" id="tipo_sangre" name="tipo_sangre" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_expiracion">Fecha de Expiración:</label>
+                <input type="date" class="form-control" id="fecha_expiracion" name="fecha_expiracion">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

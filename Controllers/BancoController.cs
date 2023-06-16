@@ -27,6 +27,106 @@ public class BancoController: Controller{
         }
         return View(tbl);
     }
+     public IActionResult AnadirAlmacenamiento()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AnadirAlmacenamiento(AlmacenamientoViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                conn.Open();
+                string query = "INSERT INTO Almacenamiento(tipo_sangre,cantidad,fecha_expiracion)" +
+                            "VALUES (@tipo_sangre, @cantidad, @fecha_expiracion)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tipo_sangre", model.tipo_sangre);
+                 cmd.Parameters.AddWithValue("@cantidad", model.cantidad);
+                cmd.Parameters.AddWithValue("@fecha_expiracion", model.fecha_expiracion);
+               
+        
+
+               
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        return View(model);
+    }
+    public IActionResult EditarAlmacenamiento(int id)
+    {
+        using (MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+        {
+            conn.Open();
+            string query = "SELECT * FROM Almacenamiento WHERE almacenamiento_id = @id";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    AlmacenamientoViewModel model = new AlmacenamientoViewModel
+                    {
+                        almacenamiento_id = Convert.ToInt32(reader["almacenamiento_id"]),
+                        tipo_sangre = Convert.ToString(reader["tipo_sangre"]),
+                        cantidad = Convert.ToInt32(reader["cantidad"]),
+                        fecha_expiracion = Convert.ToString(reader["fecha_expiracion"])
+                      
+                    };
+
+                    return View(model);
+                }
+            }
+        }
+        return RedirectToAction("Index");
+    }
+     [HttpPost]
+    public IActionResult EditarAlmacenamiento(AlmacenamientoViewModel model)  
+    {
+        
+        if(ModelState.IsValid)
+        {
+            using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                    cnx.Open();
+                    string query = "UPDATE almacenamiento SET tipo_sangre = @Tipo_sangre , cantidad = @Cantidad ,fecha_expiracion = @Fecha_expiracion  WHERE almacenamiento_id = @Almacenamiento_id";
+                    MySqlCommand cmd = new MySqlCommand(query, cnx);
+
+                        cmd.Parameters.AddWithValue("@Tipo_Sangre", model.tipo_sangre);
+                        cmd.Parameters.AddWithValue("@Cantidad", model.cantidad);
+                        cmd.Parameters.AddWithValue("@Fecha_expiracion", model.fecha_expiracion);
+                        cmd.Parameters.AddWithValue("@Almacenamiento_id", model.almacenamiento_id);
+                        cmd.ExecuteNonQuery();
+                    
+            }
+                      
+            return RedirectToAction("Index");
+          
+        }
+        
+         return View(model);
+    }
+    public IActionResult EliminarAlmacenamiento(int id)
+    {
+        using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+        {
+            cnx.Open();
+            string query = "DELETE FROM almacenamiento WHERE almacenamiento_id = @almacenamiento_id";
+            MySqlCommand cmd = new MySqlCommand(query, cnx);
+            cmd.Parameters.AddWithValue("@almacenamiento_id", id);
+            cmd.ExecuteNonQuery();
+            cnx.Close();
+        }
+
+        return RedirectToAction("Index");
+    }
      public IActionResult Donacion(){
            DataTable tbl = new DataTable();
         using(MySqlConnection conn = new MySqlConnection(_configuration.GetConnectionString("DevConnection"))){
@@ -89,7 +189,7 @@ public class BancoController: Controller{
                         fecha = Convert.ToString(reader["fecha"]),
                         hora = Convert.ToString(reader["hora"]),
                         cantidad = Convert.ToInt32(reader["cantidad"]),
-                        ubicacion = Convert.ToString(reader["ubicacion"]),
+                        ubicacion = Convert.ToString(reader["ubicacion"])
                     };
 
                     return View(model);
@@ -107,7 +207,7 @@ public class BancoController: Controller{
             using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
             {
                     cnx.Open();
-                    string query = "UPDATE donacion SET tipo_sangre = @Tipo_sangre ,  fecha = @Fecha , hora = @Hora ,cantidad = @Cantidad , ubicacion = @Ubicacion ,  WHERE donacion_id = @Donacion_id";
+                    string query = "UPDATE donacion SET tipo_sangre = @Tipo_sangre ,  fecha = @Fecha , hora = @Hora ,cantidad = @Cantidad , ubicacion = @Ubicacion  WHERE donacion_id = @Donacion_id";
                     MySqlCommand cmd = new MySqlCommand(query, cnx);
 
                         cmd.Parameters.AddWithValue("@Tipo_Sangre", model.tipo_sangre);
@@ -255,5 +355,29 @@ public class BancoController: Controller{
 
         return RedirectToAction("Index");
     }
+    private string ObtenerRol(int id)
+        {
+            string rol="";
+            // Aquí puedes realizar la lógica de validación de las credenciales
+            // Conectarte a la base de datos y comparar el correo y la contraseña con los registros de usuarios
+
+            // Ejemplo básico de validación (solo como referencia, debes implementar tu propia lógica):
+            using (MySqlConnection cnx = new MySqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                cnx.Open();
+                string query = "SELECT rol FROM usuario WHERE usuario_id = @id";
+                MySqlCommand cmd = new MySqlCommand(query, cnx);
+                cmd.Parameters.AddWithValue("@id", id);
+               object result = cmd.ExecuteScalar();
+
+            // Verificar si se obtuvo un resultado y realizar las acciones necesarias
+            if (result != null)
+            {
+                rol = result.ToString();
+                // Hacer algo con el rol obtenido
+            }
+                return rol ;
+            }
+        }
   
 }
