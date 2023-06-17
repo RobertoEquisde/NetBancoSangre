@@ -1,0 +1,46 @@
+@using Usuario.Models
+
+@model DonanteViewModel
+
+
+
+
+
+
+<h2>Editar Donante</h2>
+
+<form asp-controller="Usuario" asp-action="EditarDonante" method="POST">
+    <input type="hidden" asp-for="id_donante" />
+     <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" asp-for="nombre" class="form-control" required>
+    </div>
+     <div class="form-group">
+        <label for="apellido">Apellidos:</label>
+        <input type="number" id="apellidos" name="apellido" asp-for="apellidos" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="tipo_sangre">Tipo de Sangre:</label>
+        <input type="text" id="tipo_sangre" name="tipo_sangre" asp-for="tipo_sangre" class="form-control" required>
+    </div>
+
+   
+
+    <div class="form-group">
+        <label for="anio_nacimiento">año de nacimiento:</label>
+        <input type="text" id="anio_nacimiento" name="anio_nacimiento" asp-for="anio_nacimiento" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="donacion_realizada">donacion realizada:</label>
+        <input type="text" id="donacion_realizada" name="donacion_realizada" asp-for="donacion_realizada" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="id_usuario">id_usuario:</label>
+        <input type="text" id="id_usuario" name="id_usuario" asp-for="id_usuario" class="form-control">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>

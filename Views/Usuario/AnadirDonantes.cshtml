@@ -7,34 +7,32 @@
 <body>
     <div class="container">
         <h1>Añadir Datos</h1>
-        <form action="/Banco/anadirDonantes" method="POST">
+        <form action="/Usuario/anadirDonantes" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
             <div class="form-group">
-                <label for="edad">Edad:</label>
-                <input type="number" class="form-control" id="edad" name="edad" required>
-            </div>
-            <div class="form-group">
-                <label for="genero">Género:</label>
-                <select class="form-control" id="genero" name="genero" required>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                </select>
+                <label for="apellido">apellido:</label>
+                <input type="number" class="form-control" id="apellido" name="apellido" required>
             </div>
             <div class="form-group">
                 <label for="tipo_sangre">Tipo de Sangre:</label>
                 <input type="text" class="form-control" id="tipo_sangre" name="tipo_sangre">
             </div>
             <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" class="form-control" id="direccion" name="direccion">
+                <label for="anio_nacimiento">año de nacimiento:</label>
+                <input type="text" class="form-control" id="anio_nacimiento" name="anio_nacimiento" required>
             </div>
             <div class="form-group">
-                <label for="numero_contacto">Teléfono:</label>
-                <input type="text" class="form-control" id="numero_contacto" name="numero_contacto" required>
+                <label for="donacion_realizada">¿realizo la donacion ya?:</label>
+                <select class="form-control" id="donacion_realizada" name="donacion_realizada" required>
+                    <option value="1">si</option>
+                    <option value="0">no</option>
+                </select>
             </div>
+         
+          
             
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

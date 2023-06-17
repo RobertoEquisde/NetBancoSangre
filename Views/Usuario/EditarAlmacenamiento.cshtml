@@ -1,10 +1,10 @@
-@using banco_sangre.Models
-@model AlmacenamientoViewModel
+@using Usuario.Models
+@model AlmacenViewModel
 
 <h2>Editar Donante</h2>
 
 <form asp-controller="Banco" asp-action="EditarAlmacenamiento" method="POST">
-    <input type="hidden" asp-for="almacenamiento_id" />
+    <input type="hidden" asp-for="id_almacen" />
 
     <div class="form-group">
         <label for="tipo_sangre">Tipo de Sangre:</label>

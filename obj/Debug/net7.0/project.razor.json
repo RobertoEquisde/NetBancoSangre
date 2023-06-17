@@ -18655,8 +18655,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\AnadirDonantes.cshtml",
-      "TargetPath": "Views\\Banco\\AnadirDonantes.cshtml",
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\EditarDonantes.cshtml",
+      "TargetPath": "Views\\Usuario\\EditarDonantes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\EditarAlmacenamiento.cshtml",
+      "TargetPath": "Views\\Usuario\\EditarAlmacenamiento.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18670,18 +18675,23 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\Donantes.cshtml",
-      "TargetPath": "Views\\Banco\\Donantes.cshtml",
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\Donacion.cshtml",
+      "TargetPath": "Views\\Usuario\\Donacion.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\Almacenamiento.cshtml",
+      "TargetPath": "Views\\Usuario\\Almacenamiento.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\Donantes.cshtml",
+      "TargetPath": "Views\\Usuario\\Donantes.cshtml",
       "FileKind": "mvc"
     },
     {
       "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\EditarDonantes.cshtml",
-      "TargetPath": "Views\\Banco\\EditarDonantes.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18700,18 +18710,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\AnadirAlmacenamiento.cshtml",
-      "TargetPath": "Views\\Banco\\AnadirAlmacenamiento.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\EditarAlmacenamiento.cshtml",
-      "TargetPath": "Views\\Banco\\EditarAlmacenamiento.cshtml",
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\AnadirAlmacenamiento.cshtml",
+      "TargetPath": "Views\\Usuario\\AnadirAlmacenamiento.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18720,13 +18725,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\Donacion.cshtml",
-      "TargetPath": "Views\\Banco\\Donacion.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Banco\\Almacenamiento.cshtml",
-      "TargetPath": "Views\\Banco\\Almacenamiento.cshtml",
+      "FilePath": "c:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\Views\\Usuario\\AnadirDonantes.cshtml",
+      "TargetPath": "Views\\Usuario\\AnadirDonantes.cshtml",
       "FileKind": "mvc"
     },
     {
