@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Añadir Datos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Añadir Datos</h1>
+        <form action="/Usuario/AnadirHospitales" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre Hospital:</label>
+                <input type="text" class="form-control" id="nombre_hospital" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Direccion:</label>
+                <input type="number" class="form-control" id="direccion_hospital" name="apellido" required>
+            </div>
+      
+         
+          
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

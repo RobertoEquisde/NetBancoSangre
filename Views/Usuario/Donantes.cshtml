@@ -41,7 +41,8 @@
                         <td>@row["apellidos"]</td>
                         <td>@row["tipo_sangre"]</td>
                      @{
-                        if(row["donacion_realizada"]  == "1")
+                        String Donacion_Realizada = row["donacion_realizada"].ToString();
+                        if(Donacion_Realizada == "1")
                         {
                             <td>si</td>
 

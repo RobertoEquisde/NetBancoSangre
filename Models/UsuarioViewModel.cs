@@ -32,7 +32,7 @@ namespace Usuario.Models
         [Key]
         public int id_almacen { get; set; }
         [Required]
-        public String? tipo_sangre { get; set; }
+        public String? almacen_tipo_sangre { get; set; }
         public String? fecha_expiracion { get; set; }
         public int? cantidad { get; set; }
         public int donacion_realizada { get; set; }

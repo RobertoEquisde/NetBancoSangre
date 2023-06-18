@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xBbmFkaXJEb25hbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/AnadirHospitales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xBbmFkaXJIb3NwaXRhbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Donacion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xEb25hY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,12 +76,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXJEb25hbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/EditarHospitales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXJIb3NwaXRhbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Hospitales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xIb3NwaXRhbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/Usuario/Registro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xSZWdpc3Ryby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rober/Desktop/programacion/c\#/banco_sangre/Views/_ViewImports.cshtml]

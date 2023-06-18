@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hTD5SpFpDTe2iQ68kPwZLiuzkbzqm7goMVPgUxVaodU=",
+  "Hash": "eKi99uZ1wLh7Jg8vkxVFXV1BJ+zDvXnY8c2aXJFd/K4=",
   "Source": "banco_sangre",
   "BasePath": "_content/banco_sangre",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\wwwroot\\img\\logo.jpg",
+      "SourceId": "banco_sangre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\wwwroot\\",
+      "BasePath": "_content/banco_sangre",
+      "RelativePath": "img/logo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.jpg"
     },
     {
       "Identity": "C:\\Users\\Rober\\Desktop\\programacion\\c#\\banco_sangre\\wwwroot\\js\\site.js",

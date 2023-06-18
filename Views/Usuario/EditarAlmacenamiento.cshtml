@@ -1,14 +1,14 @@
 @using Usuario.Models
 @model AlmacenViewModel
 
-<h2>Editar Donante</h2>
+<h2>Editar almacen</h2>
 
 <form asp-controller="Banco" asp-action="EditarAlmacenamiento" method="POST">
     <input type="hidden" asp-for="id_almacen" />
 
     <div class="form-group">
         <label for="tipo_sangre">Tipo de Sangre:</label>
-        <input type="text" id="tipo_sangre" name="tipo_sangre" asp-for="tipo_sangre" class="form-control" required>
+        <input type="text" id="tipo_sangre" name="tipo_sangre" asp-for="almacen_tipo_sangre" class="form-control" required>
     </div>
 
     <div class="form-group">
