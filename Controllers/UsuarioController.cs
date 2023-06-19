@@ -14,8 +14,8 @@ namespace Usuarios.Controllers
         {
             this._conf = conf;
         }
-       
-       
+
+
         public IActionResult Index()
         {
             if (Request.Cookies["UsuarioCookie"] != null)
@@ -56,31 +56,69 @@ namespace Usuarios.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Registro(UsuarioViewModel model , DonanteViewModel model2)
+        public IActionResult Registro(UsuarioViewModel model, DonanteViewModel model2)
         {
             using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
             {
+
                 cnx.Open();
-                string query = "INSERT INTO Usuario (curp, contrasena, rol) VALUES (@Curp,@Contrasena, @Rol);";
+                string query = "INSERT INTO Usuario (curp, contrasena, rol) VALUES (@Curp,@Contrasena, @Rol);INSERT INTO donante (tipo_sangre, nombre, apellidos,anio_nacimiento,donacion_realizada,id_usuario) VALUES (@Tipo_sangre,@Nombre, @Apellidos,@Anio_nacimiento,@Donacion_realizada,@Id_usuario);";
                 MySqlCommand cmd = new MySqlCommand(query, cnx);
+                //tabla usuario
                 cmd.Parameters.AddWithValue("@Curp", model.curp);
                 cmd.Parameters.AddWithValue("@Contrasena", model.contrasena);
-                cmd.Parameters.AddWithValue("@Rol", model.rol);
-                
-                /*
+                cmd.Parameters.AddWithValue("@Rol", "usuario");
+                //para tabla donante
+                string idUsuario = Convert.ToString(ObtenerIdUsuario());
                 cmd.Parameters.AddWithValue("@Tipo_sangre", model2.tipo_sangre);
                 cmd.Parameters.AddWithValue("@Nombre", model2.nombre);
                 cmd.Parameters.AddWithValue("@Apellidos", model2.apellidos);
                 cmd.Parameters.AddWithValue("@Anio_nacimiento", model2.anio_nacimiento);
-                */
-                
-
+                cmd.Parameters.AddWithValue("@Donacion_realizada", "0");
+       	        cmd.Parameters.AddWithValue("@Id_usuario", idUsuario);
                 cmd.ExecuteNonQuery();
-               
+
             }
             return RedirectToAction("Index");
 
         }
+        private int ObtenerIdDonante()
+        {
+            int idDonante = 0; // Valor predeterminado en caso de que no se pueda obtener el id
+
+            // Lógica para obtener el valor de id_donante desde tu fuente de datos
+            // Aquí puedes utilizar la lógica adecuada según tu caso, ya sea una consulta a la base de datos u otra fuente de datos
+
+            try
+            {
+                // Ejemplo: Consulta a la base de datos para obtener el último id_donante insertado
+                using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                {
+                    cnx.Open();
+                    string query = "SELECT MAX(id_donante) FROM donante;";
+                    MySqlCommand cmd = new MySqlCommand(query, cnx);
+                    idDonante = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones en caso de error al obtener el id_donante
+                Console.WriteLine("Error al obtener el id_donante: " + ex.Message);
+            }
+
+            return idDonante;
+        }
+
+        private int ObtenerIdUsuario()
+        {
+            int idDonante = ObtenerIdDonante(); // Obtener el id_donante
+
+            // Asignar el valor de id_donante al id_usuario
+            int idUsuario = idDonante+1;
+
+            return idUsuario;
+        }
+
         public IActionResult Agregar()
         {
             return View();
@@ -254,7 +292,7 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         [HttpPost]
         public IActionResult AnadirDonantes(DonanteViewModel model)
         {
@@ -430,7 +468,7 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         [HttpPost]
         public IActionResult AnadirAlmacenamiento(AlmacenViewModel model)
         {
@@ -601,7 +639,7 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         [HttpPost]
         public IActionResult AnadirHospitales(HospitalesViewModel model)
         {
