@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-06-2023 a las 21:52:20
+-- Tiempo de generación: 22-06-2023 a las 15:25:02
 -- Versión del servidor: 5.6.13
 -- Versión de PHP: 5.4.17
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   `id_donante` int(11) NOT NULL,
   PRIMARY KEY (`id_almacen`,`id_donante`),
   KEY `fk_almacen_donante1_idx` (`id_donante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Volcado de datos para la tabla `almacen`
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `almacen` (
 
 INSERT INTO `almacen` (`id_almacen`, `tipo_sangre`, `fecha_expiracion`, `cantidad`, `id_donante`) VALUES
 (1, 'O+', '2023-06-30', 100, 1),
-(2, 'A+', '2023-06-30', 50, 2),
+(2, 'A+', '2023-09-02', 51, 2),
 (3, 'B-', '2023-06-30', 75, 3),
 (4, 'AB+', '2023-06-30', 60, 4),
 (5, 'O-', '2023-06-30', 80, 5),
@@ -52,7 +52,7 @@ INSERT INTO `almacen` (`id_almacen`, `tipo_sangre`, `fecha_expiracion`, `cantida
 (7, 'B+', '2023-06-30', 70, 7),
 (8, 'AB-', '2023-06-30', 55, 8),
 (9, 'O+', '2023-06-30', 90, 9),
-(10, 'A+', '2023-06-30', 65, 10),
+(10, 'A+', '2022-05-18', 65, 10),
 (11, 'A+', '2023-07-15', 250, 11),
 (12, 'B+', '2023-06-30', 300, 12),
 (13, 'O+', '2023-08-10', 350, 13),
@@ -72,7 +72,11 @@ INSERT INTO `almacen` (`id_almacen`, `tipo_sangre`, `fecha_expiracion`, `cantida
 (27, 'O-', '2023-08-20', 200, 27),
 (28, 'AB-', '2023-07-29', 250, 28),
 (29, 'A+', '2023-08-08', 300, 29),
-(30, 'O+', '2023-08-17', 350, 30);
+(30, 'O+', '2023-08-17', 350, 30),
+(31, 'O+', '2012-02-01', 150, 32),
+(32, 'O+', '2012-02-01', 250, 32),
+(33, 'O+', '2012-02-01', 150, 33),
+(34, 'O-', '2023-09-22', 300, 34);
 
 -- --------------------------------------------------------
 
@@ -87,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `id_donante` int(11) NOT NULL,
   PRIMARY KEY (`id_citas`,`id_donante`),
   KEY `fk_citas_donante1_idx` (`id_donante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -123,7 +127,11 @@ INSERT INTO `citas` (`id_citas`, `fecha_cita`, `lugar_cita`, `id_donante`) VALUE
 (27, '2023-07-13 15:00:00', 'Hospital del Valle', 27),
 (28, '2023-07-14 11:00:00', 'Hospital San José', 28),
 (29, '2023-07-15 13:15:00', 'Centro Médico Nacional', 29),
-(30, '2023-07-16 16:30:00', 'Clínica Ángeles', 30);
+(30, '2023-07-16 16:30:00', 'Clínica Ángeles', 30),
+(31, '2023-06-29 00:00:00', 'Hospital A', 32),
+(32, '2023-06-29 00:00:00', 'Hospital A', 32),
+(33, '2023-06-29 18:32:00', 'Hospital B', 33),
+(34, '2023-06-22 16:56:00', 'Hospital B', 34);
 
 -- --------------------------------------------------------
 
@@ -159,7 +167,8 @@ INSERT INTO `donacion` (`id_hospitales`, `id_almacen`, `id_donante`, `fecha_envi
 (8, 18, 18, '2023-07-12'),
 (9, 9, 9, '2023-06-25'),
 (9, 19, 19, '2023-07-29'),
-(10, 20, 20, '2023-07-17');
+(11, 20, 20, '2023-07-17'),
+(11, 34, 34, '2023-09-01');
 
 -- --------------------------------------------------------
 
@@ -177,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `donante` (
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_donante`,`id_usuario`),
   KEY `fk_donante_usuario_idx` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Volcado de datos para la tabla `donante`
@@ -213,7 +222,11 @@ INSERT INTO `donante` (`id_donante`, `tipo_sangre`, `nombre`, `apellidos`, `anio
 (27, 'A+', 'Emilio', 'García Martínez', '1998-04-24', 0, 27),
 (28, 'O+', 'Isabella', 'Hernández González', '1991-12-11', 0, 28),
 (29, 'A-', 'Andrés', 'Pérez López', '1986-08-27', 0, 29),
-(30, 'O-', 'Natalia', 'Gómez Martínez', '1994-02-02', 0, 30);
+(30, 'O-', 'Natalia', 'Gómez Martínez', '1994-02-02', 0, 30),
+(31, 'O+', 'Juan', 'Garcia Lopez', '1999-06-22', 0, 31),
+(32, 'O+', 'José Alberto ', 'Méndez Jimenez', '1993-06-27', 0, 32),
+(33, 'O+', 'María Andrea', 'Martínez López', '1984-08-21', 0, 33),
+(34, 'O-', 'Jose Luis', 'Cervantes García', '1986-02-06', 1, 34);
 
 -- --------------------------------------------------------
 
@@ -226,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `hospitales` (
   `nombre_hospital` tinytext NOT NULL,
   `direccion_hospital` tinytext NOT NULL,
   PRIMARY KEY (`id_hospitales`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `hospitales`
@@ -242,7 +255,10 @@ INSERT INTO `hospitales` (`id_hospitales`, `nombre_hospital`, `direccion_hospita
 (7, 'Hospital Nacional', 'Avenida Central 654, Ciudad'),
 (8, 'Hospital A', 'Dirección A'),
 (9, 'Hospital B', 'Dirección B'),
-(10, 'Hospital C', 'Dirección C');
+(10, 'Hospital C', 'Dirección C'),
+(11, 'hospital  la raza', 'Calz. Vallejo 8, La Raza, Azcapotzalco, 02990 Ciudad de México, CDMX'),
+(12, 'IMSS Hospital General de Zona 24', 'magdalena de las Salinas, Gustavo A. Madero,'),
+(13, 'hospital m', '');
 
 -- --------------------------------------------------------
 
@@ -256,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `contrasena` tinytext NOT NULL,
   `rol` tinytext NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -292,7 +308,11 @@ INSERT INTO `usuario` (`id_usuario`, `curp`, `contrasena`, `rol`) VALUES
 (27, 'GAMA980424HMCRZQ04', 'contraseña27', 'usuario'),
 (28, 'HEGO911211HMCRGZ05', 'contraseña28', 'usuario'),
 (29, 'PEAL860827HMCRZQ02', 'contraseña29', 'usuario'),
-(30, 'GOMN940202HMCRRS08', 'contraseña30', 'usuario');
+(30, 'GOMN940202HMCRRS08', 'contraseña30', 'usuario'),
+(31, 'GOLJ990622HJCRRPS1', '1234', 'usuario'),
+(32, 'JAME930627MOCGRLK4', '1234', 'usuario'),
+(33, 'MALM840921MOCGRS71', '1234', 'usuario'),
+(34, 'JOLC860206HOCGRN46', '1234', 'usuario');
 
 --
 -- Restricciones para tablas volcadas
