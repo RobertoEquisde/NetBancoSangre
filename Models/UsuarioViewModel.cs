@@ -20,7 +20,7 @@ namespace Usuario.Models
         public String? tipo_sangre { get; set; }
         public String? nombre { get; set; }
         public String? apellidos { get; set; }
-        public String? anio_nacimiento { get; set; }
+        public DateTime? anio_nacimiento { get; set; }
 
         public int donacion_realizada { get; set; }
         [ForeignKey("id_usuario")]
@@ -33,7 +33,7 @@ namespace Usuario.Models
         public int id_almacen { get; set; }
         [Required]
         public String? almacen_tipo_sangre { get; set; }
-        public String? fecha_expiracion { get; set; }
+        public DateTime? fecha_expiracion { get; set; }
         public int? cantidad { get; set; }
         public int donacion_realizada { get; set; }
         [ForeignKey("id_donante")]
@@ -45,7 +45,7 @@ namespace Usuario.Models
         [Key]
         public int id_cita { get; set; }
         [Required]
-        public String? fecha_cita { get; set; }
+        public DateTime? fecha_cita { get; set; }
         public String? lugar_cita { get; set; }
         [ForeignKey("id_donante")]
         public int id_donante { get; set; }
@@ -54,23 +54,22 @@ namespace Usuario.Models
     public class HospitalesViewModel
     {
         [Key]
-        public int id_hospital { get; set; }
+        public int id_hospitales { get; set; }
         [Required]
         public String? nombre_hospital { get; set; }
         public String? direccion_hospital { get; set; }
     }
     public class DonacionViewModel
     {
-        [Key]
-        public int id_donacion { get; set; }
-        [Required]
-        public String? fecha_envio { get; set; }
+       
+        public DateTime? fecha_envio { get; set; }
+       
         [ForeignKey("id_donante")]
         public int id_donante { get; set; }
         [ForeignKey("id_almacen")]
         public int id_almacen { get; set; }
-        [ForeignKey("id_hospital")]
-        public int id_hospital { get; set; }
+        [ForeignKey("id_hospitales")]
+        public int id_hospitales { get; set; }
 
 
     }

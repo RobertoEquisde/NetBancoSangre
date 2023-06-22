@@ -10,14 +10,14 @@
 <h2>Editar Donante</h2>
 
 <form asp-controller="Usuario" asp-action="EditarHospital" method="POST">
-    <input type="hidden" asp-for="id_hospital" />
+    <input type="hidden" asp-for="id_hospitales" />
      <div class="form-group">
         <label for="nombre_hospital">Nombre del Hospital:</label>
         <input type="text" id="nombre_hospital" name="nombre_hospital" asp-for="nombre_hospital" class="form-control" required>
     </div>
      <div class="form-group">
         <label for="direccion_hospital">Direccion:</label>
-        <input type="number" id="direccion_hospital" name="direccion_hospital" asp-for="direccion_hospital" class="form-control" required>
+        <input type="text" id="direccion_hospital" name="direccion_hospital" asp-for="direccion_hospital" class="form-control" required>
     </div>
 
 

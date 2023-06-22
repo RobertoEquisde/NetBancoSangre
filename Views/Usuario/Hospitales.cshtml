@@ -9,7 +9,41 @@
 
 
      <body>
-            
+               <div class="mb-3 text-end">
+        <a asp-action="Logout" class="btn btn-danger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Menú -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/index">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/Donantes">Donantes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/Donacion">Donación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/Citas">Citas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/Almacenamiento">Almacenamiento</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="~/Usuario/hospitales">hospitales</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
             <div class="jumbotron">
             <h1 class="text-center">@ViewData["Title"]</h1>
         </div>
@@ -47,7 +81,7 @@
                                 </button>
                             </a>
                             <a asp-action="EliminarHospitales" asp-route-id="@row["id_hospitales"]" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="@row["id_hospitales"]" />
+                                <input type="hidden" name="id" value="@row["id_hospitales"]"/>
                                 <button type="submit" class="btn btn-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewBox="0 0 16 16">
                                         <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>

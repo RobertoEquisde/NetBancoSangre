@@ -75,7 +75,7 @@ namespace Usuarios.Controllers
                 cmd.Parameters.AddWithValue("@Apellidos", model2.apellidos);
                 cmd.Parameters.AddWithValue("@Anio_nacimiento", model2.anio_nacimiento);
                 cmd.Parameters.AddWithValue("@Donacion_realizada", "0");
-       	        cmd.Parameters.AddWithValue("@Id_usuario", idUsuario);
+                cmd.Parameters.AddWithValue("@Id_usuario", idUsuario);
                 cmd.ExecuteNonQuery();
 
             }
@@ -114,7 +114,7 @@ namespace Usuarios.Controllers
             int idDonante = ObtenerIdDonante(); // Obtener el id_donante
 
             // Asignar el valor de id_donante al id_usuario
-            int idUsuario = idDonante+1;
+            int idUsuario = idDonante + 1;
 
             return idUsuario;
         }
@@ -137,12 +137,14 @@ namespace Usuarios.Controllers
                         using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                         {
                             cnx.Open();
-                            string query = "INSERT INTO Usuario (curp, correo, contrasena,rol) VALUES (@Curp, @Contrasena, @Rol)";
+                            string query = "INSERT INTO Usuario (curp, contrasena,rol) VALUES (@Curp, @Contrasena, @Rol)";
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
                             cmd.Parameters.AddWithValue("@Curp", model.curp);
                             cmd.Parameters.AddWithValue("@Contrasena", model.contrasena);
                             cmd.Parameters.AddWithValue("@Rol", model.rol);
+
                             cmd.ExecuteNonQuery();
+                            cnx.Close();
                         }
                         return RedirectToAction("Index");
                     }
@@ -166,24 +168,30 @@ namespace Usuarios.Controllers
                 string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
                 if (rol == "admin")
                 {
-                    UsuarioViewModel model = new UsuarioViewModel();
                     using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                     {
                         cnx.Open();
-                        string query = "SELECT * FROM usuario WHERE id_usuario = @id";
+                        string query = "SELECT * FROM usuario WHERE id_usuario = @ID";
                         MySqlCommand cmd = new MySqlCommand(query, cnx);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@ID", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            model.id_usuario = Convert.ToInt32(reader["id_usuario"]);
-                            model.curp = reader["curp"].ToString();
-                            model.contrasena = reader["contrasena"].ToString();
-                            model.rol = reader["rol"].ToString();
+                            if (reader.Read())
+                            {
+                                UsuarioViewModel model = new UsuarioViewModel
+                                {
+                                    id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                    curp = reader["curp"].ToString(),
+                                    contrasena = reader["contrasena"].ToString(),
+                                    rol = reader["rol"].ToString()
+                                };
+
+                                return View(model);
+                            }
                         }
-                        reader.Close();
                     }
-                    return View(model);
+                    return RedirectToAction("index");
                 }
                 else
                 {
@@ -292,7 +300,10 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        public IActionResult AnadirDonantes()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult AnadirDonantes(DonanteViewModel model)
         {
@@ -306,15 +317,19 @@ namespace Usuarios.Controllers
                         using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                         {
                             cnx.Open();
-                            string query = "INSERT INTO donante(nombre,apellidos,anio_nacimiento,donacion_realizada) VALUES (@Nombre,@Apellidos, @Anio_Nacimiento, @Donacion_Realizada)";
+                            string id_usuario = Convert.ToString(ObtenerIdUsuario());
+                            string query = "INSERT INTO donante(tipo_sangre,nombre,apellidos,anio_nacimiento,donacion_realizada,id_usuario) VALUES (@Tipo_sangre,@Nombre,@Apellidos, @Anio_Nacimiento, @Donacion_Realizada,@id_usuario)";
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
+                            cmd.Parameters.AddWithValue("@Tipo_sangre", model.tipo_sangre);
                             cmd.Parameters.AddWithValue("@Nombre", model.nombre);
                             cmd.Parameters.AddWithValue("@Apellidos", model.apellidos);
                             cmd.Parameters.AddWithValue("@Anio_Nacimiento", model.anio_nacimiento);
                             cmd.Parameters.AddWithValue("@Donacion_Realizada", model.donacion_realizada);
+                            cmd.Parameters.AddWithValue("@id_usuario", id_usuario);
                             cmd.ExecuteNonQuery();
+                            cnx.Close();
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Donantes");
                     }
                     return View(model);
                 }
@@ -339,27 +354,32 @@ namespace Usuarios.Controllers
                 string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
                 if (rol == "admin")
                 {
-                    DonanteViewModel model = new DonanteViewModel();
                     using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                     {
                         cnx.Open();
-                        string query = "SELECT * FROM donante WHERE id_donante = @id";
+                        string query = "SELECT * FROM donante WHERE id_donante = @ID";
                         MySqlCommand cmd = new MySqlCommand(query, cnx);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            model.id_donante = Convert.ToInt32(reader["id_usuario"]);
-                            model.tipo_sangre = reader["tipo_sangre"].ToString();
-                            model.nombre = reader["nombre"].ToString();
-                            model.apellidos = reader["apellidos"].ToString();
-                            model.anio_nacimiento = reader["anio_nacimiento"].ToString();
-                            model.donacion_realizada = Convert.ToInt32(reader["donacion_realizada"]);
+                        cmd.Parameters.AddWithValue("@ID", id);
 
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                DonanteViewModel model = new DonanteViewModel
+                                {
+                                    id_donante = Convert.ToInt32(reader["id_donante"]),
+                                    nombre = reader["nombre"].ToString(),
+                                    apellidos = reader["apellidos"].ToString(),
+                                    tipo_sangre = reader["tipo_sangre"].ToString(),
+                                    anio_nacimiento = Convert.ToDateTime(reader["anio_nacimiento"]),
+                                    donacion_realizada = Convert.ToInt32(reader["donacion_realizada"])
+                                };
+
+                                return View(model);
+                            }
                         }
-                        reader.Close();
                     }
-                    return View(model);
+                    return RedirectToAction("donantes");
                 }
                 else
                 {
@@ -385,16 +405,17 @@ namespace Usuarios.Controllers
                         using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                         {
                             cnx.Open();
-                            string query = "UPDATE donante SET nombre = @Nombre,  apellidos = @Apellidos, tipo_sangre = @Tipo_Sangre,anio_nacimiento = @Anio_nacimiento,donacion_ralizada = @Donacion_realizada WHERE id_donante = @id";
+                            string query = "UPDATE donante SET nombre = @Nombre,  apellidos = @Apellidos, tipo_sangre = @Tipo_Sangre,anio_nacimiento = @Anio_nacimiento,donacion_realizada = @Donacion_realizada WHERE id_donante = @id";
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
                             cmd.Parameters.AddWithValue("@Nombre", model.nombre);
                             cmd.Parameters.AddWithValue("@Apellidos", model.apellidos);
                             cmd.Parameters.AddWithValue("@Tipo_sangre", model.tipo_sangre);
                             cmd.Parameters.AddWithValue("@Anio_nacimiento", model.anio_nacimiento);
                             cmd.Parameters.AddWithValue("@Donacion_realizada", model.donacion_realizada);
+                            cmd.Parameters.AddWithValue("@id", model.id_donante);
                             cmd.ExecuteNonQuery();
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("donantes");
                     }
                     return View(model);
                 }
@@ -468,7 +489,10 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        public IActionResult AnadirAlmacenamiento()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult AnadirAlmacenamiento(AlmacenViewModel model)
         {
@@ -482,11 +506,13 @@ namespace Usuarios.Controllers
                         using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                         {
                             cnx.Open();
-                            string query = "INSERT INTO almacen(tipo_sangre,fecha_expiracion,cantidad) VALUES (@Tipo_sangre,@Fecha_expiracion, @Cantidad)";
+                            string query = "INSERT INTO almacen(tipo_sangre,fecha_expiracion,cantidad,id_donante) VALUES (@Tipo_sangre,@Fecha_expiracion, @Cantidad,@Id_donante)";
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
+                            string id_donante = Convert.ToString(ObtenerIdDonante());
                             cmd.Parameters.AddWithValue("@Tipo_sangre", model.almacen_tipo_sangre);
                             cmd.Parameters.AddWithValue("@Fecha_expiracion", model.fecha_expiracion);
                             cmd.Parameters.AddWithValue("@Cantidad", model.cantidad);
+                            cmd.Parameters.AddWithValue("@Id_donante", id_donante);
                             cmd.ExecuteNonQuery();
                         }
                         return RedirectToAction("Index");
@@ -514,25 +540,31 @@ namespace Usuarios.Controllers
                 string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
                 if (rol == "admin")
                 {
-                    AlmacenViewModel model = new AlmacenViewModel();
                     using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                     {
                         cnx.Open();
-                        string query = "SELECT * FROM almacen WHERE id_almacen = @id";
+                        string query = "SELECT * FROM almacen WHERE id_almacen = @ID";
                         MySqlCommand cmd = new MySqlCommand(query, cnx);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            model.id_almacen = Convert.ToInt32(reader["id_almacen"]);
-                            model.almacen_tipo_sangre = reader["tipo_sangre"].ToString();
-                            model.fecha_expiracion = reader["fecha_expiracion"].ToString();
-                            model.cantidad = Convert.ToInt32(reader["cantidad"]);
+                        cmd.Parameters.AddWithValue("@ID", id);
 
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                AlmacenViewModel model = new AlmacenViewModel
+                                {
+                                    id_almacen = Convert.ToInt32(reader["id_almacen"]),
+                                    almacen_tipo_sangre = Convert.ToString(reader["tipo_sangre"]),
+                                    fecha_expiracion = Convert.ToDateTime(reader["fecha_expiracion"]),
+                                    cantidad = Convert.ToInt32(reader["cantidad"])
+                                };
+
+                                return View(model);
+                            }
                         }
-                        reader.Close();
                     }
-                    return View(model);
+                    return RedirectToAction("almacenamiento");
+
                 }
                 else
                 {
@@ -546,7 +578,7 @@ namespace Usuarios.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditarAlmacen(AlmacenViewModel model)
+        public IActionResult EditarAlmacenamiento(AlmacenViewModel model)
         {
             if (Request.Cookies["UsuarioCookie"] != null)
             {
@@ -563,9 +595,10 @@ namespace Usuarios.Controllers
                             cmd.Parameters.AddWithValue("@Tipo_sangre", model.almacen_tipo_sangre);
                             cmd.Parameters.AddWithValue("@Fecha_expiracion", model.fecha_expiracion);
                             cmd.Parameters.AddWithValue("@Cantidad", model.cantidad);
+                            cmd.Parameters.AddWithValue("@id", model.id_almacen);
                             cmd.ExecuteNonQuery();
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("almacenamiento");
                     }
                     return View(model);
                 }
@@ -639,6 +672,10 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        public IActionResult AnadirHospitales()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult AnadirHospitales(HospitalesViewModel model)
@@ -653,13 +690,13 @@ namespace Usuarios.Controllers
                         using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                         {
                             cnx.Open();
-                            string query = "INSERT INTO hospitales(nombre_hospital,direccion_hospital) VALUES (@Nombre_hospita,direccion_hospital)";
+                            string query = "INSERT INTO hospitales(nombre_hospital,direccion_hospital) VALUES (@Nombre_hospital,@Direccion_hospital)";
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
                             cmd.Parameters.AddWithValue("@Nombre_hospital", model.nombre_hospital);
                             cmd.Parameters.AddWithValue("@Direccion_hospital", model.direccion_hospital);
                             cmd.ExecuteNonQuery();
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("hospitales");
                     }
                     return View(model);
                 }
@@ -684,25 +721,29 @@ namespace Usuarios.Controllers
                 string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
                 if (rol == "admin")
                 {
-                    HospitalesViewModel model = new HospitalesViewModel();
                     using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
                     {
                         cnx.Open();
-                        string query = "SELECT * FROM hospitales WHERE id_hospitales = @id";
+                        string query = "SELECT * FROM hospitales WHERE id_hospitales = @ID";
                         MySqlCommand cmd = new MySqlCommand(query, cnx);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@ID", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            model.id_hospital = Convert.ToInt32(reader["id_hospitales"]);
-                            model.nombre_hospital = reader["nombre_hospital"].ToString();
-                            model.direccion_hospital = reader["direccion_hospital"].ToString();
+                            if (reader.Read())
+                            {
+                                HospitalesViewModel model = new HospitalesViewModel
+                                {
+                                    id_hospitales = Convert.ToInt32(reader["id_hospitales"]),
+                                    nombre_hospital = reader["nombre_hospital"].ToString(),
+                                    direccion_hospital = reader["direccion_hospital"].ToString()
+                                };
 
-
+                                return View(model);
+                            }
                         }
-                        reader.Close();
                     }
-                    return View(model);
+                    return RedirectToAction("hospitales");
                 }
                 else
                 {
@@ -732,10 +773,10 @@ namespace Usuarios.Controllers
                             MySqlCommand cmd = new MySqlCommand(query, cnx);
                             cmd.Parameters.AddWithValue("@Nombre_hospital", model.nombre_hospital);
                             cmd.Parameters.AddWithValue("@Direccion_hospital", model.direccion_hospital);
-
+                            cmd.Parameters.AddWithValue("@id", model.id_hospitales);
                             cmd.ExecuteNonQuery();
                         }
-                        return RedirectToAction("Index");
+                        return RedirectToAction("hospitales");
                     }
                     return View(model);
                 }
@@ -776,6 +817,264 @@ namespace Usuarios.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        //==========================================CITAS====================================================================
+        public IActionResult Citas()
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    DataTable tbl = new DataTable();
+                    using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                    {
+                        cnx.Open();
+                        String query = "select * from citas";
+                        MySqlDataAdapter adp = new MySqlDataAdapter(query, cnx);
+                        adp.Fill(tbl);
+                        cnx.Close();
+                    }
+                    return View(tbl);
+                }
+                else if (rol == "usuario")
+                {
+                    return RedirectToAction("Index", "Banco");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public IActionResult AnadirCitas()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AnadirCitas(CitaViewModel model)
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    if (ModelState.IsValid)
+                    {
+                        using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                        {
+                            cnx.Open();
+                            string query = "INSERT INTO citas(fecha_cita,lugar_cita,id_donante) VALUES (@Fecha_cita,@Lugar_cita,@Id_donante)";
+                            string id_donante = Convert.ToString(ObtenerIdDonante());
+                            MySqlCommand cmd = new MySqlCommand(query, cnx);
+                            cmd.Parameters.AddWithValue("@Fecha_cita", model.fecha_cita);
+                            cmd.Parameters.AddWithValue("@Lugar_cita", model.lugar_cita);
+                            cmd.Parameters.AddWithValue("@Id_donante", id_donante);
+                            cmd.ExecuteNonQuery();
+                        }
+                        return RedirectToAction("citas");
+                    }
+                    return View(model);
+                }
+                else if (rol == "usuario")
+                {
+                    return RedirectToAction("Index", "Banco");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public IActionResult EditarCitas(int id)
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                    {
+                        cnx.Open();
+                        string query = "SELECT * FROM citas WHERE id_citas = @ID";
+                        MySqlCommand cmd = new MySqlCommand(query, cnx);
+                        cmd.Parameters.AddWithValue("@ID", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                CitaViewModel model = new CitaViewModel
+                                {
+                                    id_cita = Convert.ToInt32(reader["id_citas"]),
+                                    fecha_cita = Convert.ToDateTime(reader["fecha_cita"]),
+                                    lugar_cita = Convert.ToString(reader["lugar_cita"])
+                                };
+
+                                return View(model);
+                            }
+                        }
+                    }
+                    return RedirectToAction("citas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "banco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditarCitas(CitaViewModel model)
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    if (ModelState.IsValid)
+                    {
+                        using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                        {
+                            cnx.Open();
+                            string query = "UPDATE citas SET fecha_cita = @Fecha_cita,  lugar_cita = @Lugar_cita WHERE id_citas = @id";
+                            MySqlCommand cmd = new MySqlCommand(query, cnx);
+                            cmd.Parameters.AddWithValue("@Fecha_cita", model.fecha_cita);
+                            cmd.Parameters.AddWithValue("@Lugar_cita", model.lugar_cita);
+                            cmd.Parameters.AddWithValue("@id", model.id_cita);
+                            cmd.ExecuteNonQuery();
+                        }
+                        return RedirectToAction("citas");
+                    }
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "banco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public IActionResult EliminarCita(int id)
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                    {
+                        cnx.Open();
+                        string query = "DELETE FROM citas WHERE id_cita = @Id";
+                        MySqlCommand cmd = new MySqlCommand(query, cnx);
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "banco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        //=======================================Donacion=====================================================================
+        public IActionResult Donacion()
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    DataTable tbl = new DataTable();
+                    using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                    {
+                        cnx.Open();
+                        String query = "select * from donacion";
+                        MySqlDataAdapter adp = new MySqlDataAdapter(query, cnx);
+                        adp.Fill(tbl);
+                        cnx.Close();
+                    }
+                    return View(tbl);
+                }
+                else if (rol == "usuario")
+                {
+                    return RedirectToAction("Index", "Banco");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public IActionResult AnadirDonacion()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AnadirDonacion(DonacionViewModel model)
+        {
+            if (Request.Cookies["UsuarioCookie"] != null)
+            {
+                string rol = ObtenerRol(Convert.ToInt32(Request.Cookies["UsuarioCookie"]));
+                if (rol == "admin")
+                {
+                    if (ModelState.IsValid)
+                    {
+                        using (MySqlConnection cnx = new MySqlConnection(_conf.GetConnectionString("DevConnection")))
+                        {
+                            cnx.Open();
+                            string query = "INSERT INTO donacion(id_donante, id_almacen, id_hospitales, fecha_envio) VALUES (@Id_donante, @Id_almacen, @Id_hospitales, @Fecha_envio)";
+                            MySqlCommand cmd = new MySqlCommand(query, cnx);
+                            cmd.Parameters.AddWithValue("@Id_donante", model.id_donante );
+                            cmd.Parameters.AddWithValue("@Id_almacen",model.id_almacen );
+                            cmd.Parameters.AddWithValue("@Id_hospitales", model.id_hospitales);
+                            cmd.Parameters.AddWithValue("@Fecha_envio", model.fecha_envio);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        return RedirectToAction("citas");
+                    }
+                    return View(model);
+                }
+                else if (rol == "usuario")
+                {
+                    return RedirectToAction("Index", "Banco");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        //=======================================LOGIN=======================================================================
         [HttpPost]
         public IActionResult Login(string curp, string contrasena)
         {

@@ -1,0 +1,25 @@
+@using Usuario.Models
+
+@model CitaViewModel
+
+
+
+
+
+
+<h2>Editar Donante</h2>
+
+<form asp-controller="Usuario" asp-action="EditarCitas" method="POST">
+    <input type="hidden" asp-for="id_cita" />
+     <div class="form-group">
+        <label for="fecha_cita">Fecha de cita:</label>
+        <input type="text" id="fecha_cita" name="fecha_cita" asp-for="fecha_cita" class="form-control" required>
+    </div>
+     <div class="form-group">
+        <label for="lugar_cita">Direccion:</label>
+        <input type="text" id="lugar_cita" name="lugar_cita" asp-for="lugar_cita" class="form-control" required>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>

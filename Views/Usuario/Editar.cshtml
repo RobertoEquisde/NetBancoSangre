@@ -4,26 +4,18 @@
 <h2>Editar Usuario</h2>
 
 <form asp-controller="Usuario" asp-action="Editar" method="post">
-    <input type="hidden" id="id_usuario" name="id" value="@Model.id_usuario" />
+    <input type="hidden"   asp-for="id_usuario" />
 
 
-    <label for="correo">CURP:</label>
-    <input type="email" id="curp" name="correo" value="@Model.curp"><br><br>
+    <label for="curp">CURP:</label>
+    <input type="curp" id="curp" name="curp" asp-for="curp"><br><br>
 
     <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" name="contrasena" value="@Model.contrasena"><br><br>
+    <input type="text" id="contrasena" name="contrasena" asp-for="contrasena"><br><br>
 
 
-    <label for="rol">Rol:</label>
-    <select id="rol" name="rol">
-        @if(Model.rol == "Admin"){
-        <option value="admin" selected>admin</option>
-        <option value="usuario" >usuario</option>
-        }else{
-            <option value="admin" >admin</option>
-        <option value="usuario" selected>usuario</option>
-        }
-    </select><br><br>
+    <label for="nombre">rol:</label>
+    <input type="text" id="rol" name="rol" asp-for="rol"><br><br>
 
-    <input type="submit" value="Guardar cambios">
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
 </form>

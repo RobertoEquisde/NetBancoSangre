@@ -1,23 +1,76 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pantalla de usuario</title>
-  <!-- Agregar los enlaces a Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h1 class="text-center display-4">PANTALLA DE USUARIO</h1>
-      </div>
-    </div>
-  </div>
+@model Tuple<System.Data.DataTable, System.Data.DataTable>
 
-  <!-- Agregar los enlaces a los scripts de Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
+@{
+    ViewData["Title"] = "Perfil";
+}
+<html>
+        <head>
+          
+        </head>
+
+        <body>
+            <div class="mb-3 text-end">
+                <a asp-action="Logout" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                        <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="jumbotron">
+                <h1 class="text-center">@ViewData["Title"]</h1>
+            </div>
+
+
+             <div class="d-flex align-items-center justify-content-center">
+              <div class="card mx-auto" style="width: 400px;">
+              <img class="card-img-top" src="~/img/avatar.jpg" alt="Card image">
+              <div class="card-body">
+                  @foreach (System.Data.DataRow row in Model.Item1.Rows)
+                  {
+                      <h4 class="card-title">@row["nombre"] @row["apellidos"]</h4>
+                      <p class="card-text">Tipo de Sangre: @row["tipo_sangre"]</p>
+                      <p class="card-text">año de nacimiento : @row["anio_nacimiento"]</p>
+                   
+                                     
+                      
+                      bool tieneCita = false; // Variable para verificar si se tiene una cita registrada
+                      foreach (System.Data.DataRow row2 in Model.Item2.Rows)
+                        {
+                            if (row2["id_donante"].ToString() == row["id_donante"].ToString() && row2["id_citas"] != null)
+                            {
+                                tieneCita = true;
+                                break; // Se encontró una cita, se sale del bucle interno
+                            }
+                        }
+
+                        if (!tieneCita)
+                        {
+                            <a href="banco/registrodonacion" class="btn btn-primary">Realiza tu cita para donación</a>
+                        }
+                        else
+                        {
+                            <h4 class="card-title">Gracias por realizar tu cita :D</h4>
+                            
+                            foreach(System.Data.DataRow row2 in Model.Item2.Rows)
+                            {
+                                <p class="card-text">Fecha: @row2["fecha_cita"]</p>
+                                <p class="card-text">Lugar: @row2["lugar_cita"]</p>
+                            }
+                        }
+
+                        int donacion_realizada = Convert.ToInt32(row["donacion_realizada"]);
+                        if(donacion_realizada == 1){
+                            <a asp-controller="banco" asp-action="Export"  class="btn btn-info btn-white">descarga tu certificado</a>
+                        }
+                    
+                  }
+              
+
+
+              </div>  
+            </div>
+        </div>
+        </body>
 </html>
+

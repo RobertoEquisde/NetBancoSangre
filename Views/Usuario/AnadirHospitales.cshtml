@@ -7,14 +7,14 @@
 <body>
     <div class="container">
         <h1>Añadir Datos</h1>
-        <form action="/Usuario/AnadirHospitales" method="POST">
+        <form asp-controller="Usuario" asp-action="AnadirHospitales" method="POST">
             <div class="form-group">
-                <label for="nombre">Nombre Hospital:</label>
-                <input type="text" class="form-control" id="nombre_hospital" name="nombre" required>
+                <label for="nombre_hospital">Nombre Hospital:</label>
+                <input type="text" class="form-control" id="nombre_hospital" name="nombre_hospital" required>
             </div>
             <div class="form-group">
-                <label for="apellido">Direccion:</label>
-                <input type="number" class="form-control" id="direccion_hospital" name="apellido" required>
+                <label for="direccion_hospital">Direccion:</label>
+                <input type="text" class="form-control" id="direccion_hospital" name="direccion_hospital" required>
             </div>
       
          

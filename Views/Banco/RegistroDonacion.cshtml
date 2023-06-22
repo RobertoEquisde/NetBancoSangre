@@ -1,0 +1,39 @@
+@using Usuario.Models
+@model UsuarioViewModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <!-- Agregar los enlaces a Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center">Registro de cita</h1>
+        <form asp-controller="Banco" asp-action="RegistroDonacion" method="post">
+          <div class="form-group">
+            <label for="fecha_cita">Fecha de cita:</label>
+            <input type="datetime-local" id="fecha_cita" name="fecha_cita" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lugar_cita">lugar_cita:</label>
+            <input type="text" id="lugar_cita" name="lugar_cita" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agregar los enlaces a los scripts de Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

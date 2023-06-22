@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Añadir Datos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Añadir Datos</h1>
+        <form asp-controller="Usuario" asp-action="AnadirDonacion" method="POST">
+            <div class="form-group">
+                <label for="id_donante">id donantes:</label>
+                <input type="text" class="form-control" id="id_donante" name="id_donante" required>
+            </div>
+            <div class="form-group">
+                <label for="id_almacen">id almacen:</label>
+                <input type="text" class="form-control" id="id_almacen" name="id_almacen" required>
+            </div>
+            <div class="form-group">
+                <label for="id_hospitales">id hospital:</label>
+                <input type="text" class="form-control" id="id_hospitales" name="id_hospitales">
+            </div>
+            <div class="form-group">
+                <label for="fecha_envio">fecha de envio:</label>
+                <input type="date" class="form-control" id="fecha_envio" name="fecha_envio" required>
+            </div>
+            
+          
+         
+          
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
