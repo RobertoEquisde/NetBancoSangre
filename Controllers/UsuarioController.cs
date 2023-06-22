@@ -1056,7 +1056,7 @@ namespace Usuarios.Controllers
 
                             cmd.ExecuteNonQuery();
                         }
-                        return RedirectToAction("citas");
+                        return RedirectToAction("donacion");
                     }
                     return View(model);
                 }

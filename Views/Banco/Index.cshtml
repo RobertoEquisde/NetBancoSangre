@@ -57,12 +57,10 @@
                                 <p class="card-text">Fecha: @row2["fecha_cita"]</p>
                                 <p class="card-text">Lugar: @row2["lugar_cita"]</p>
                             }
+                             <a asp-controller="banco" asp-action="Export"  class="btn btn-info btn-white">descarga tu certificado</a>
                         }
 
-                        int donacion_realizada = Convert.ToInt32(row["donacion_realizada"]);
-                        if(donacion_realizada == 1){
-                            <a asp-controller="banco" asp-action="Export"  class="btn btn-info btn-white">descarga tu certificado</a>
-                        }
+                       
                     
                   }
               
